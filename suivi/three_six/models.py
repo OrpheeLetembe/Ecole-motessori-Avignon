@@ -349,6 +349,7 @@ class Langage(GenericModel):
 
     """ PREPARATION ECRITURE ET LECTURE """
 
+
     sound_analysis_game = models.CharField(max_length=10, choices=LEVEL_CHOICES,
                                            verbose_name="Le jeu d'analyse des sons")
     rough_letters_diagrams = models.CharField(max_length=10, choices=LEVEL_CHOICES,
