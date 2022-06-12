@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'authentication',
     'students',
+    'three_six'
+
 ]
 
 MIDDLEWARE = [
