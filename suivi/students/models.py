@@ -26,6 +26,17 @@ class Students(models.Model):
         verbose_name = "Student"
         verbose_name_plural = "Students"
 
+    IMAGE_MAX_SIZE = (200, 200)
+
+    def resize_image(self):
+        image = Image.open(self.image)
+        image.thumbnail(self.IMAGE_MAX_SIZE)
+        image.save(self.image.path)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.resize_image()
+
     def __str__(self):
         return f'{self.firstname} {self.lastname}'
 
