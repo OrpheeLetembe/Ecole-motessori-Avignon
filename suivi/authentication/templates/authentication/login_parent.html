@@ -3,17 +3,6 @@
 {% block title %}Page d'accueil{% endblock %}
 
 {% block content %}
-
-    <div class="row forms">
-        <div class="col-md-6 signup">
-            <h1>Enregistrez-vous maintenant</h1>
-            <div class="signup_btn">
-                <form  action="{% url 'signup' %}" method='get' >
-                {% csrf_token %}
-                <input class="btn btn-outline-dark" type='submit' value="S'enregistrer">
-                </form>
-            </div>
-        </div>
         <div class="col-md-6 login">
             <h1>Connectez-vous</h1>
             <p>{{ message}}</p>
@@ -24,7 +13,4 @@
                 </form>
             </div>
         </div>
-    </div>
-
-
 {% endblock content %}

@@ -1,7 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
 from . import forms
+from students.models import Students
+from three_six.models import PracticalLife
+
+
+def home_page(request):
+    return render(request, "authentication/home.html")
 
 
 def logout_page(request):
@@ -27,7 +33,7 @@ def login_page(request):
             )
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                return redirect('all_child')
             else:
                 message = "Identifiants invalides."
     return render(request, "authentication/login.html", context={"form": form, "message": message})
@@ -43,6 +49,30 @@ def signup_page(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('flux')
+            return redirect('all_child')
 
     return render(request, "authentication/signup.html", context={"form": form})
+
+
+def login_parent(request):
+
+    form = forms.ParentLoginForm()
+    if request.method == 'POST':
+        form = forms.ParentLoginForm(request.POST)
+        if form.is_valid():
+            try:
+                student = Students.objects.get(code=form.data['code'])
+                practical_life = PracticalLife.objects.get(student=student)
+                context = {
+                    'student': student,
+                    'pl': practical_life
+                }
+
+                return render(request, 'three_six/praticlife.html', context)
+            except Students.DoesNotExist:
+                message = "Code invalide."
+                return render(request, "authentication/login_parent.html", context={'form': form, 'message': message})
+
+    return render(request, "authentication/login_parent.html", context={'form': form})
+
+

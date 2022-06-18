@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
+from ambiance.models import Ambiance
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=60, label="",
@@ -14,19 +16,16 @@ class LoginForm(forms.Form):
 
 class SignupForm(UserCreationForm):
 
-    ENVIRONMENT_CHOICES = [
-        ('Bois', 'Bois'),
-        ('terre', 'Terre'),
-
-    ]
-
     username = forms.CharField(required=True, label="Nom d'utilisateur", widget=forms.TextInput(attrs={"size": 60}))
-    first_name = forms.CharField(label="Prénom", widget=forms.TextInput(attrs={"size": 60}))
-    last_name = forms.CharField(label="Nom", widget=forms.TextInput(attrs={"size": 60}))
-    phone = forms.CharField(label="Numéro de téléphone", widget=forms.TextInput(attrs={"size": 60}))
-    ambiance = forms.ChoiceField(label='Ambiance', choices=ENVIRONMENT_CHOICES, widget=forms.RadioSelect())
+    firstname = forms.CharField(label="Prénom", widget=forms.TextInput(attrs={"size": 60}))
+    lastname = forms.CharField(label="Nom", widget=forms.TextInput(attrs={"size": 60}))
+    ambiance = forms.ModelChoiceField(label="Ambiance", queryset=Ambiance.objects.all())
     password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={"size": 60}))
     password2 = forms.CharField(label="Confirmer mot de passe", widget=forms.PasswordInput(attrs={"size": 60}))
 
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
+
+
+class ParentLoginForm(forms.Form):
+    code = forms.CharField(max_length=60, label="Code", widget=forms.PasswordInput(attrs={"size": 40}))

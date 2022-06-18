@@ -2,6 +2,8 @@ from django.db import models
 
 from PIL import Image
 
+from ambiance.models import Ambiance
+
 
 class Students(models.Model):
     BOIS = 'BOIS'
@@ -16,9 +18,11 @@ class Students(models.Model):
     firstname = models.CharField(max_length=25)
     lastname = models.CharField(max_length=25)
     date_of_birth = models.DateField()
-    ambiance = models.CharField(max_length=100, choices=ENVIRONMENT_CHOICES)
-    reference_email = models.CharField(max_length=100)
-    reference_phone = models.CharField(max_length=20)
+    ambiance = models.ForeignKey(Ambiance, on_delete=models.CASCADE)
+    code = models.CharField(max_length=20, unique=True)
+    observations_trim1 = models.TextField(null=True, blank=True)
+    observations_trim2 = models.TextField(null=True, blank=True)
+    observations_trim3 = models.TextField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
@@ -26,7 +30,8 @@ class Students(models.Model):
         verbose_name = "Student"
         verbose_name_plural = "Students"
 
-    IMAGE_MAX_SIZE = (200, 200)
+
+    IMAGE_MAX_SIZE = (100, 100)
 
     def resize_image(self):
         image = Image.open(self.image)

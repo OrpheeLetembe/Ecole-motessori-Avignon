@@ -1,0 +1,39 @@
+{% extends "authentication/base.html" %}
+
+{% block title %}{{ambiance.name}}{% endblock %}
+
+{% block content %}
+
+<div>
+    <h1>{{user.ambiance}}</h1> <a href="{% url 'add_child' %}">Nouvel élève</a>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        {% for student in students %}
+         <table class="table" border="0" style="float:left; margin-right:10px; margin-bottom:6px">
+      <thead>
+
+      </thead>
+      <tbody>
+        <tr>
+            <td>
+                <a href="{% url 'Vie_Pratique' student_id=student.id %}">
+                    <p><img class="ticket_post_img" src="{{student.image.url}}"></p>
+                </a>
+            </td>
+            <td>
+                Prénom : {{student.firstname}}<br> Nom: {{student.lastname}}<br> Code: {{student.code}}
+            </td>
+        </tr>
+        </tbody>
+
+        {% endfor %}
+
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+
+
+{% endblock content %}
