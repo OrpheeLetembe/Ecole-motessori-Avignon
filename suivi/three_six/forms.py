@@ -1,446 +1,555 @@
 from django import forms
-from .models import PracticalLife, SensoryMaterial, Math, Langage, Letter
+from .models import PracticalLife, SensoryMaterial, Math, Langage, Letter, Comments
 from students.models import Students
 
 
-class StudentForm(forms.ModelForm):
-    ENVIRONMENT_CHOICES = [
-        ('Bois', 'Bois'),
-        ('terre', 'Terre'),
-
-    ]
-
-    image = forms.ImageField(label="", widget=forms.FileInput())
-    first_name = forms.CharField(label="Prénom", widget=forms.TextInput(attrs={"size": 60}))
-    last_name = forms.CharField(label="Nom", widget=forms.TextInput(attrs={"size": 60}))
-    date_of_birth = forms.DateField(label="Dta de naissance", widget=forms.DateInput())
-    reference_phone = forms.CharField(label="Numéro de téléphone", widget=forms.TextInput(attrs={"size": 60}))
-    ambiance = forms.ChoiceField(label='Ambiance', choices=ENVIRONMENT_CHOICES, widget=forms.RadioSelect())
-
-    class Meta:
-        model = Students
-        fields = ['image', 'first_name', 'last_name', 'date_of_birth', 'reference_phone', 'ambiance']
-
-
 class PracticalLifeForm(forms.ModelForm):
-    LEVEL_CHOICES = (
-        ('Présentée', 'Présentée'),
-        ("En cours d'acquisition", "En cours d'acquisition"),
-        ('Acquise', 'Acquise')
 
-    )
-
+    
     """ EXERCICES PRELIMINAIRES """
-
-    move_mood = forms.ChoiceField(label="Se déplacer dans l'ambiance", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    carry_table = forms.ChoiceField(label="Porter une table seul, à deux", choices=LEVEL_CHOICES,
-                                    widget=forms.RadioSelect())
-    Carry_tray = forms.ChoiceField(label="Porter un plateau", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    Carrying_mat = forms.ChoiceField(label="Porter, dérouler et rouler un tapis", choices=LEVEL_CHOICES,
-                                     widget=forms.RadioSelect())
-    open_close_door = forms.ChoiceField(label="Ouvrir et fermer une porte",
-                                        choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    open_close_window = forms.ChoiceField(label="Ouvrir et fermer une fenêtre, un tiroir",
-                                          choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_preliminary_exercises = forms.CharField(label="Observations exercices préliminaires",
-                                                         widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_1 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    move_mood = forms.CharField(
+        label="Se déplacer dans l'ambiance", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    carry_table = forms.CharField(
+        label="Porter une table seul, à deux", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    Carry_tray = forms.CharField(
+        label="Porter un plateau", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    Carrying_mat = forms.CharField(
+        label="Porter, dérouler et rouler un tapis", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    open_close_door = forms.CharField(
+        label="Ouvrir et fermer une porte", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    open_close_window = forms.CharField(
+        label="Ouvrir et fermer une fenêtre, un tiroir", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_preliminary_exercises = forms.CharField(
+        label="Observations exercices préliminaires", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     """ SOIN DU MILEU INTERIEUR """
 
-    squeeze_sponge = forms.ChoiceField(label="Presser une éponge", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    Screw_bolts = forms.ChoiceField(label="Visser, dévisser des boulons",
-                                    choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    open_close_padlock = forms.ChoiceField(label="Ouvrir et fermer un cadenas",
-                                           choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    use_clothes_pegs = forms.ChoiceField(label="Se servir de pinces à linge",
-                                         choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    open_close_boxes = forms.ChoiceField(label="Ouvrir et fermer des boites",
-                                         choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    open_close_bottles = forms.ChoiceField(label="Ouvrir et fermer des flacons",
-                                           choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    fold_fabrics = forms.ChoiceField(label="Plier des étoffes", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    fold_paper = forms.ChoiceField(label="Plier du papier", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    cut_paper_scissors = forms.ChoiceField(label="Couper du papier avec des ciseaux",
-                                          choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    paste_paper = forms.ChoiceField(label="Coller du papier", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    dust = forms.ChoiceField(label="Epousseter avec un chiffon, un plumeau",
-                             choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    sweep = forms.ChoiceField(label="Balayer", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    brush_carpet = forms.ChoiceField(label="Brosser un tapis", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    transfer_spoon = forms.ChoiceField(label="Transvaser avec une cuillère",
-                                       choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    pour_rice = forms.ChoiceField(label="Verser du riz", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    pour_sand = forms.ChoiceField(label="Verser du sable", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    pour_water = forms.ChoiceField(label="Verser de l'eau", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    pour_water_glasses = forms.ChoiceField(label="Verser de l'eau dans des verres",
-                                           choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    clean_mirror = forms.ChoiceField(label="Nettoyer un miroir", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    polish_brass = forms.ChoiceField(label="Astiquer les cuivres", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    take_care_plants = forms.ChoiceField(label="Soigner les plantes", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    chang_flower_water = forms.ChoiceField(label="Changer l'eau des fleurs",
-                                           choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    wash_table = forms.ChoiceField(label="Laver la table", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    wash_clothes = forms.ChoiceField(label="Laver du linge", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_care_interior = forms.CharField(label="Observations soin du milieu intérieur ",
-                                                         widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_2 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    squeeze_sponge = forms.CharField(
+        label="Presser une éponge", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    Screw_bolts = forms.CharField(
+        label="Visser, dévisser des boulons", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    open_close_padlock = forms.CharField(
+        label="Ouvrir et fermer un cadenas", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    use_clothes_pegs = forms.CharField(
+        label="Se servir de pinces à linge", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    open_close_boxes = forms.CharField(
+        label="Ouvrir et fermer des boites", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    open_close_bottles = forms.CharField(
+        label="Ouvrir et fermer des flacons", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    fold_fabrics = forms.CharField(
+        label="Plier des étoffes", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    fold_paper = forms.CharField(
+        label="Plier du papier", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    cut_paper_scissors = forms.CharField(
+        label="Couper du papier avec des ciseaux", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    paste_paper = forms.CharField(
+        label="Coller du papier", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    dust = forms.CharField(
+        label="Epousseter avec un chiffon, un plumeau", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    sweep = forms.CharField(
+        label="Balayer", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    brush_carpet = forms.CharField(
+        label="Brosser un tapis", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    transfer_spoon = forms.CharField(
+        label="Transvaser avec une cuillère", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    pour_rice = forms.CharField(
+        label="Verser du riz", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    pour_sand = forms.CharField(
+        label="Verser du sable", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    pour_water = forms.CharField(
+        label="Verser de l'eau", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    pour_water_glasses = forms.CharField(
+        label="Verser de l'eau dans des verres", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    clean_mirror = forms.CharField(
+        label="Nettoyer un miroir", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    polish_brass = forms.CharField(
+        label="Astiquer les cuivres", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    take_care_plants = forms.CharField(
+        label="Soigner les plantes", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    chang_flower_water = forms.CharField(
+        label="Changer l'eau des fleurs", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    wash_table = forms.CharField(
+        label="Laver la table", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    wash_clothes = forms.CharField(
+        label="Laver du linge", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_care_interior = forms.CharField(
+        label="Observations soin du milieu intérieur ", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     """ SOIN DE LA PERSONNE"""
 
-    frame_press_studs = forms.ChoiceField(label="Cadre à boutons pressions",
-                                          choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    frame_big_studs = forms.ChoiceField(label="Cadre à gros boutons", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    frame_small_studs = forms.ChoiceField(label="Cadre à petits boutons",
-                                          choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    frame_slide = forms.ChoiceField(label="Cadre à glissière", choices=LEVEL_CHOICES,
-                                          widget=forms.RadioSelect())
-    frame_staple = forms.ChoiceField(label="Cadre à agrafes", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    frame_loop = forms.ChoiceField(label="Cadre à boucles", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    frame_safety_pin = forms.ChoiceField(label="Cadre à épingles à nourrice",
-                                         choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    frame_node = forms.ChoiceField(label="Cadre à noeuds", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    frame_lacing = forms.ChoiceField(label="Cadre à laçage", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    wash_hands = forms.ChoiceField(label="Se laver les mains", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    shine_shoes = forms.ChoiceField(label="Cirer ses chaussures", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    sew = forms.ChoiceField(label="Coudre", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_personal_care = forms.CharField(label="Observations soin de la personne",
-                                                 widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_3 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    frame_press_studs = forms.CharField(
+        label="Cadre à boutons pressions", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    frame_big_studs = forms.CharField(
+        label="Cadre à gros boutons", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    frame_small_studs = forms.CharField(
+        label="Cadre à petits boutons", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    frame_slide = forms.CharField(
+        label="Cadre à glissière", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    frame_staple = forms.CharField(
+        label="Cadre à agrafes", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    frame_loop = forms.CharField(
+        label="Cadre à boucles", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    frame_safety_pin = forms.CharField(
+        label="Cadre à épingles à nourrice", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    frame_node = forms.CharField(
+        label="Cadre à noeuds", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    frame_lacing = forms.CharField(
+        label="Cadre à laçage", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    wash_hands = forms.CharField(
+        label="Se laver les mains", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    shine_shoes = forms.CharField(
+        label="Cirer ses chaussures", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    sew = forms.CharField(
+        label="Coudre", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_personal_care = forms.CharField(
+        label="Observations soin de la personne", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     """ JEUX COLLECTIFS"""
-
-    walk_line = forms.ChoiceField(label="Marcher sur la ligne", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    lesson_silence = forms.ChoiceField(label="Leçon de silence", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_collective_games = forms.CharField(label="Observations jeux collectifs",
-                                                    widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_4 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    walk_line = forms.CharField(
+        label="Marcher sur la ligne", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    lesson_silence = forms.CharField(
+        label="Leçon de silence", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_collective_games = forms.CharField(
+        label="Observations jeux collectifs", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     class Meta:
         model = PracticalLife
         exclude = ('student',)
 
 
-class SensoryMaterialForm(forms.Form):
-    LEVEL_CHOICES = (
-        ('Présentée', 'Présentée'),
-        ("En cours d'acquisition", "En cours d'acquisition"),
-        ('Acquise', 'Acquise')
+class SensoryMaterialForm(forms.ModelForm):
 
-    )
 
-    cylindrical_sockets_1 = forms.ChoiceField(label="Emboitements cylindriques 1",
-                                              choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    cylindrical_sockets_2 = forms.ChoiceField(label="Emboitements cylindriques 2", choices=LEVEL_CHOICES,
-                                              widget=forms.RadioSelect())
-    cylindrical_sockets_3 = forms.ChoiceField(label="Emboitements cylindriques 3", choices=LEVEL_CHOICES,
-                                              widget=forms.RadioSelect())
-    cylindrical_sockets_4 = forms.ChoiceField(label="Emboitements cylindriques 4", choices=LEVEL_CHOICES,
-                                              widget=forms.RadioSelect())
-    pink_tower = forms.ChoiceField(label="La tour rose", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    brown_staircase = forms.ChoiceField(label="L'escalier marron", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    red_bars = forms.ChoiceField(label="Les barres rouges", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    color_table_1 = forms.ChoiceField(label="Les tables des couleurs 1", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    color_table_2 = forms.ChoiceField(label="Les tables des couleurs 2", choices=LEVEL_CHOICES,
-                                      widget=forms.RadioSelect())
-    color_table_3 = forms.ChoiceField(label="Les tables des couleurs 3", choices=LEVEL_CHOICES,
-                                      widget=forms.RadioSelect())
-    geometry_tray = forms.ChoiceField(label="Le cabinet de géométrie/plateau", choices=LEVEL_CHOICES,
-                                      widget=forms.RadioSelect())
-    geometry_drawers = forms.ChoiceField(label="Le cabinet de géométrie/tiroirs", choices=LEVEL_CHOICES,
-                                         widget=forms.RadioSelect())
-    geometry_maps = forms.ChoiceField(label="Le cabinet de géométrie/cartes", choices=LEVEL_CHOICES,
-                                      widget=forms.RadioSelect())
-    smooth_rough = forms.ChoiceField(label="Lisse et rugueux", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    smooth_rough_table = forms.ChoiceField(label="Lisse et rugueux : les tablettes",
-                                           choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    fabrics = forms.ChoiceField(label="Les étoffes", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    geometric_solids = forms.ChoiceField(label="Les solides géométriques",
-                                         choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    mystery_bag = forms.ChoiceField(label="Le sac à mystères", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    stereognostic_bag = forms.ChoiceField(label="Les sacs stéréognostiques",
-                                          choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    seed_sorting = forms.ChoiceField(label="Le tri des graines", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    baryque_tablets = forms.ChoiceField(label="Les tablettes baryques",
-                                        choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    noise_boxes = forms.ChoiceField(label="Les boites à bruits", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    flavours = forms.ChoiceField(label="Les saveurs", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    thermal_bottles = forms.ChoiceField(label="Les bouteilles thermiques",
-                                        choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    thermal_tablets = forms.ChoiceField(label="Les tablettes thermiques",
-                                        choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    constructor_triangles_1 = forms.ChoiceField(label="Les triangles constructeurs 1",
-                                                choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    constructor_triangles_2 = forms.ChoiceField(label="Les triangles constructeurs 2",
-                                                choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    constructor_triangles_3 = forms.ChoiceField(label="Les triangles constructeurs 3",
-                                                choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    constructor_triangles_4 = forms.ChoiceField(label="Les triangles constructeurs 4",
-                                                choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    constructor_triangles_5 = forms.ChoiceField(label="Les triangles constructeurs 5",
-                                                choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    constructor_triangles_6 = forms.ChoiceField(label="Les triangles constructeurs 6",
-                                                choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    superimposed_figures = forms.ChoiceField(label="Les figures superposées",
-                                             choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    binomial_cube = forms.ChoiceField(label="Le cube du binôme", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    trinomial_cube = forms.ChoiceField(label="Le cube du trinôme", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    pythagore_table = forms.ChoiceField(label="La table de Pythagore", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    colored_cylinders = forms.ChoiceField(label="Les cylindres de couleur", choices=LEVEL_CHOICES,
-                                          widget=forms.RadioSelect())
-    botanical_tray = forms.ChoiceField(label="Le cabinet de botaniques/plateau", choices=LEVEL_CHOICES,
-                                       widget=forms.RadioSelect())
-    botanical_maps = forms.ChoiceField(label="Le cabinet de botaniques/cartes", choices=LEVEL_CHOICES,
-                                       widget=forms.RadioSelect())
-    bells = forms.ChoiceField(label="Les clochettes", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    smooth_rough_globe = forms.ChoiceField(label="Le globe lisse et rugueux",
-                                           choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    planisphere = forms.ChoiceField(label="Le planisphère", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    puzzles_continents = forms.ChoiceField(label="Les puzzles des continents",
-                                           choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    flags = forms.ChoiceField(label="Les drapeaux", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    flags_1 = forms.ChoiceField(label="Les drapeaux : nomenclature classifiée",
-                                choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    land_water = forms.ChoiceField(label="Les contrastes de la terre et de l'eau",
-                                         choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    europe = forms.ChoiceField(label="La carte de l'Europe", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    art = forms.ChoiceField(label="Introduction à l'art", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    sink_float = forms.ChoiceField(label="Les objects qui coulent, qui flottent",
-                                   choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    horizontal_water = forms.ChoiceField(label="l'eau qui s'équilibre sur un plan horizontal",
-                                         choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    north = forms.ChoiceField(label="La direction du nord", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    water_air_1 = forms.ChoiceField(label="L'eau et l'air 1", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    water_air_2 = forms.ChoiceField(label="L'eau et l'air 3", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    water_air_3 = forms.ChoiceField(label="L'eau et l'air 3", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    electricity = forms.ChoiceField(label="L'électricité", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    magnets_1 = forms.ChoiceField(label="Les aimants 1", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    magnets_2 = forms.ChoiceField(label="Les aimants 2", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    roman_arch = forms.ChoiceField(label="L'arche romane", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
+    cylindrical_sockets_1 = forms.CharField(
+        label="Emboitements cylindriques 1", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    cylindrical_sockets_2 = forms.CharField(
+        label="Emboitements cylindriques 2", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    cylindrical_sockets_3 = forms.CharField(
+        label="Emboitements cylindriques 3", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    cylindrical_sockets_4 = forms.CharField(
+        label="Emboitements cylindriques 4", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    pink_tower = forms.CharField(
+        label="La tour rose", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    brown_staircase = forms.CharField(
+        label="L'escalier marron", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    red_bars = forms.CharField(
+        label="Les barres rouges", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    color_table_1 = forms.CharField(
+        label="Les tables des couleurs 1", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    color_table_2 = forms.CharField(
+        label="Les tables des couleurs 2", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    color_table_3 = forms.CharField(
+        label="Les tables des couleurs 3", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    geometry_tray = forms.CharField(
+        label="Le cabinet de géométrie/plateau", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    geometry_drawers = forms.CharField(
+        label="Le cabinet de géométrie/tiroirs", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    geometry_maps = forms.CharField(
+        label="Le cabinet de géométrie/cartes", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    smooth_rough = forms.CharField(
+        label="Lisse et rugueux", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    smooth_rough_table = forms.CharField(
+        label="Lisse et rugueux : les tablettes", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    fabrics = forms.CharField(
+        label="Les étoffes", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    geometric_solids = forms.CharField(
+        label="Les solides géométriques", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    mystery_bag = forms.CharField(
+        label="Le sac à mystères", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    stereognostic_bag = forms.CharField(
+        label="Les sacs stéréognostiques", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    seed_sorting = forms.CharField(
+        label="Le tri des graines", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    baryque_tablets = forms.CharField(
+        label="Les tablettes baryques", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    noise_boxes = forms.CharField(
+        label="Les boites à bruits", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    smells = forms.CharField(
+        label="Les odeurs", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
 
-    observations = forms.CharField(label="Observations", widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    flavours = forms.CharField(
+        label="Les saveurs", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    thermal_bottles = forms.CharField(
+        label="Les bouteilles thermiques", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    thermal_tablets = forms.CharField(
+        label="Les tablettes thermiques", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    constructor_triangles_1 = forms.CharField(
+        label="Les triangles constructeurs 1", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    constructor_triangles_2 = forms.CharField(
+        label="Les triangles constructeurs 2", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    constructor_triangles_3 = forms.CharField(
+        label="Les triangles constructeurs 3", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    constructor_triangles_4 = forms.CharField(
+        label="Les triangles constructeurs 4", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    constructor_triangles_5 = forms.CharField(
+        label="Les triangles constructeurs 5", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    constructor_triangles_6 = forms.CharField(
+        label="Les triangles constructeurs 6", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    superimposed_figures = forms.CharField(
+        label="Les figures superposées", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    binomial_cube = forms.CharField(
+        label="Le cube du binôme", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    trinomial_cube = forms.CharField(
+        label="Le cube du trinôme", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    pythagore_table = forms.CharField(
+        label="La table de Pythagore", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    colored_cylinders = forms.CharField(
+        label="Les cylindres de couleur", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    botanical_tray = forms.CharField(
+        label="Le cabinet de botaniques/plateau", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    botanical_maps = forms.CharField(
+        label="Le cabinet de botaniques/cartes", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    bells = forms.CharField(
+        label="Les clochettes", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    smooth_rough_globe = forms.CharField(
+        label="Le globe lisse et rugueux", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    colorful_globe = forms.CharField(
+        label="Le globe coloré", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    planisphere = forms.CharField(
+        label="Le planisphère", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    puzzles_continents = forms.CharField(
+        label="Les puzzles des continents", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    flags = forms.CharField(
+        label="Les drapeaux", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    flags_1 = forms.CharField(
+        label="Les drapeaux : nomenclature classifiée", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    land_water = forms.CharField(
+        label="Les contrastes de la terre et de l'eau",  required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    europe = forms.CharField(
+        label="La carte de l'Europe", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    art = forms.CharField(
+        label="Introduction à l'art", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    sink_float = forms.CharField(
+        label="Les objects qui coulent, qui flottent", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    horizontal_water = forms.CharField(
+        label="l'eau qui s'équilibre sur un plan horizontal", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    north = forms.CharField(
+        label="La direction du nord", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    water_air_1 = forms.CharField(
+        label="L'eau et l'air 1", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    water_air_2 = forms.CharField(
+        label="L'eau et l'air 3", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    water_air_3 = forms.CharField(
+        label="L'eau et l'air 3", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    electricity = forms.CharField(
+        label="L'électricité", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    magnets_1 = forms.CharField(
+        label="Les aimants 1", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    magnets_2 = forms.CharField(
+        label="Les aimants 2", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    roman_arch = forms.CharField(
+        label="L'arche romane", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations = forms.CharField(
+        label="Observations", required=False, widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     class Meta:
         model = SensoryMaterial
-        fields = '__all__'
+        exclude = ('student',)
 
 
-class MathForm(forms.Form):
-    LEVEL_CHOICES = (
-        ('Présentée', 'Présentée'),
-        ("En cours d'acquisition", "En cours d'acquisition"),
-        ('Acquise', 'Acquise')
+class MathForm(forms.ModelForm):
 
-    )
 
     """ GROUPE 1 NUMERATION DE 1 A 10"""
-
-    number_bars = forms.ChoiceField(label="Les barres numériques", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    rough_numbers = forms.ChoiceField(label="Les chiffres rugueux", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    bars_numbers = forms.ChoiceField(label="Association barres et chiffres",
-                                     choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    spindles = forms.ChoiceField(label="Les fuseaux", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    token_game = forms.ChoiceField(label="Le jeu des jetons", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    memory_game = forms.ChoiceField(label="Le jeu de mémoire", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_group_1 = forms.CharField(label="Observations groupe 1 : numérotation 1 a 10",
-                                                 widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_1 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    number_bars = forms.CharField(
+        label="Les barres numériques", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    rough_numbers = forms.CharField(
+        label="Les chiffres rugueux", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    bars_numbers = forms.CharField(
+        label="Association barres et chiffres", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    spindles = forms.CharField(
+        label="Les fuseaux", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    token_game = forms.CharField(
+        label="Le jeu des jetons", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    memory_game = forms.CharField(
+        label="Le jeu de mémoire", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_group_1 = forms.CharField(
+        label="Observations groupe 1 : numérotation 1 a 10", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     """ GROUPE 2 INTRODUCTION AU SYSTEME DECIMAL ET AUX OPERATIONS"""
-
-    sd_quantity = forms.ChoiceField(label="SD : 1ère présentation, quantités",
-                                    choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    sd_symbol = forms.ChoiceField(label="SD : 1ère présentation, symboles",
-                                    choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    sd_number = forms.ChoiceField(label="SD : formation des grands nombres",
-                                  choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    add_sd = forms.ChoiceField(label="Addition statique/dynamique",
-                               choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    sous_sd = forms.ChoiceField(label="Soustraction statique/dynamique",
-                                choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    multi_sd = forms.ChoiceField(label="Multiplication statique/dynamique",
-                                 choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    div_sd = forms.ChoiceField(label="Division statique/dynamique", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    stamps_add = forms.ChoiceField(label="Les timbres : addition S/D", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    stamps_sous = forms.ChoiceField(label="Les timbres : soustraction S/D", choices=LEVEL_CHOICES,
-                                    widget=forms.RadioSelect())
-    stamps_multi = forms.ChoiceField(label="Les timbres : multiplication S/D", choices=LEVEL_CHOICES,
-                                     widget=forms.RadioSelect())
-    stamps_div = forms.ChoiceField(label="Les timbres : division S/D", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    points_tables = forms.ChoiceField(label="La table des points", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_group_2 = forms.CharField(label="Observations groupe 2 : "
-                                                 "introduction au système décimal et aux opérations",
-                                           widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_2 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    sd_quantity = forms.CharField(
+        label="SD : 1ère présentation, quantités", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    sd_symbol = forms.CharField(
+        label="SD : 1ère présentation, symboles", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    sd_number = forms.CharField(
+        label="SD : formation des grands nombres", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    add_sd = forms.CharField(
+        label="Addition statique / dynamique", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    sous_sd = forms.CharField(
+        label="Soustraction statique / dynamique", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    multi_sd = forms.CharField(
+        label="Multiplication statique / dynamique", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    div_sd = forms.CharField(
+        label="Division statique / dynamique", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    stamps_add = forms.CharField(
+        label="Les timbres : addition S/D", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    stamps_sous = forms.CharField(
+        label="Les timbres : soustraction S/D", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    stamps_multi = forms.CharField(
+        label="Les timbres : multiplication S/D", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    stamps_div = forms.CharField(
+        label="Les timbres : division S/D", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    points_tables = forms.CharField(
+        label="La table des points", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_group_2 = forms.CharField(
+        label="Observations groupe 2 : introduction au système décimal et aux opérations", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     """ GROUPE 3 NUMERATION DE 11 A L'INFINI """
 
-    quantity_11_19 = forms.ChoiceField(label="11 à 19 : les quantités",
-                                       choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    seguin_11_19 = forms.ChoiceField(label="11 à 19 : la 1ère table de Seguin",
-                                     choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    quantity_symbol_11_19 = forms.ChoiceField(label="11 à 19 : asso quantités symboles",
-                                              choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    seguin_11_99 = forms.ChoiceField(label="11 à 19 : asso quantités symboles",
-                                     choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    chain_100 = forms.ChoiceField(label="La chaîne de 100", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    chain_1000 = forms.ChoiceField(label="La chaîne de 1000", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    chain_square = forms.ChoiceField(label="La chaîne du carré", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    chain_cube = forms.ChoiceField(label="La chaîne du cube", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_group_3 = forms.CharField(label="Observations groupe 3 : ""numération de 11 à l'infini",
-                                           widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_3 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+
+    quantity_11_19 = forms.CharField(
+        label="11 à 19 : les quantités", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    seguin_11_19 = forms.CharField(
+        label="11 à 19 : la 1ère table de Seguin", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    quantity_symbol_11_19 = forms.CharField(
+        label="11 à 19 : asso quantités symboles", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    seguin_11_99 = forms.CharField(
+        label="11 à 99 : la 2ème table de Seguin", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    chain_100 = forms.CharField(
+        label="La chaîne de 100", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    chain_1000 = forms.CharField(
+        label="La chaîne de 1000", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    chain_square = forms.CharField(
+        label="La chaîne du carré", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    chain_cube = forms.CharField(
+        label="La chaîne du cube", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+
+    observations_group_3 = forms.CharField(
+        label="Observations groupe 3 : numération de 11 à l'infini", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     """ GROUPE 4 11 A 19 ASSOCIATION QUANTITES SYMBOLES"""
 
-    snake_game_add = forms.ChoiceField(label="Le jeu du serpent de l'addition",
-                                       choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    add_table = forms.ChoiceField(label="Le tableau de l'addition", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    memo_add_table = forms.ChoiceField(label="Tables mémo addition 1, 2, 3, 4",
-                                       choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    snake_game_sous = forms.ChoiceField(label="Le jeu du serpent de la soustraction",
-                                        choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    sous_table = forms.ChoiceField(label="Le tableau de la soustraction",
-                                   choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    emo_sous_table = forms.ChoiceField(label="Tables mémo soustraction 1, 2",
-                                       choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    memo_multi = forms.ChoiceField(label="Mémo multiplication : perles couleur",
-                                   choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    multi_table = forms.ChoiceField(label="Le tableau de la multiplication",
-                                    choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    memo_multi_table = forms.ChoiceField(label="Tables mémo multiplication 1, 2, 3",
-                                         choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    div_table = forms.ChoiceField(label="Le tableau de la division", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    memo_div_table = forms.ChoiceField(label="Tables mémo division 1, 2",
-                                       choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_group_4 = forms.CharField(label="Observations groupe 4 : 11 a 19 : association quantités symboles",
-                                           widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_4 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    snake_game_add = forms.CharField(
+        label="Le jeu du serpent de l'addition", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    add_table = forms.CharField(
+        label="Le tableau de l'addition", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    memo_add_table = forms.CharField(
+        label="Tables mémo addition 1, 2, 3, 4", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    snake_game_sous = forms.CharField(
+        label="Le jeu du serpent de la soustraction", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    sous_table = forms.CharField(
+        label="Le tableau de la soustraction", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    memo_sous_table = forms.CharField(
+        label="Tables mémo soustraction 1, 2", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    memo_multi = forms.CharField(
+        label="Mémo multiplication : perles couleur", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    multi_table = forms.CharField(
+        label="Le tableau de la multiplication", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    memo_multi_table = forms.CharField(
+        label="Tables mémo multiplication 1, 2, 3", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    div_table = forms.CharField(
+        label="Le tableau de la division", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    memo_div_table = forms.CharField(
+        label="Tables mémo division 1, 2", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+
+    observations_group_4 = forms.CharField(
+        label="Observations groupe 4 : 11 a 19 : association quantités symboles", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     """ GROUPE 5 LE PASSAGE A L'ABSTRACTION """
 
-    little_abacus = forms.ChoiceField(label="Petit boulier : présentation",
-                                      choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    little_abacus_add_sd = forms.ChoiceField(label="Petit boulier : addition S/D",
-                                             choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    little_abacus_sous_sd = forms.ChoiceField(label="Petit boulier : soustraction S/D",
-                                              choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    little_abacus_multi_sd = forms.ChoiceField(label="Petit boulier : multiplication S/D",
-                                               choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    hierarchies_quantity_symbol = forms.ChoiceField(label="Hiérarchies : quantités, symboles, association",
-                                                    choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    large_abacus = forms.ChoiceField(label="Grand boulier : présentation",
-                                     choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    large_add_sd = forms.ChoiceField(label="Grand boulier : addition S/D",
-                                     choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    large_sous_sd = forms.ChoiceField(label="Grand boulier : soustraction S/D",
-                                      choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    large_multi_sd = forms.ChoiceField(label="Grand boulier : multiplication S/D",
-                                       choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    div_tube = forms.ChoiceField(label="La grande division avec tubes",
-                                       choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_group_5 = forms.CharField(label="Observations groupe 5 : le passage à l'abstraction",
-                                           widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_5 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    little_abacus = forms.CharField(
+        label="Petit boulier : présentation", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    little_abacus_add_sd = forms.CharField(
+        label="Petit boulier : addition S/D", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    little_abacus_sous_sd = forms.CharField(
+        label="Petit boulier : soustraction S/D", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    little_abacus_multi_sd = forms.CharField(
+        label="Petit boulier : multiplication S/D", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    hierarchies_quantity_symbol = forms.CharField(
+        label="Hiérarchies : quantités, symboles, association", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    large_abacus = forms.CharField(
+        label="Grand boulier : présentation", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    large_add_sd = forms.CharField(
+        label="Grand boulier : addition S/D", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    large_sous_sd = forms.CharField(
+        label="Grand boulier : soustraction S/D", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    large_multi_sd = forms.CharField(
+        label="Grand boulier : multiplication S/D", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    div_tube = forms.CharField(
+        label="La grande division avec tubes", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_group_5 = forms.CharField(
+        label="Observations groupe 5 : le passage à l'abstraction", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     """ GROUPE 6 LES FRACTIONS """
 
-    div_name = forms.ChoiceField(label="Les nommer", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    div_write = forms.ChoiceField(label="Les écrire", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    find_equivalences = forms.ChoiceField(label="Rechercher les équivalences",
-                                          choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    make_operations = forms.ChoiceField(label="Faire des opérations", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_group_6 = forms.CharField(label="Observations groupe 6 : les fractions",
-                                           widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_6 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    div_name = forms.CharField(
+        label="Les nommer", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    div_write = forms.CharField(
+        label="Les écrire", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    find_equivalences = forms.CharField(
+        label="Rechercher les équivalences", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    make_operations = forms.CharField(
+        label="Faire des opérations", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_group_6 = forms.CharField(
+        label="Observations groupe 6 : les fractions", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     class Meta:
         model = Math
-        fields = '__all__'
+        exclude = ('student',)
 
 
-class LangageForm(forms.Form):
-    LEVEL_CHOICES = (
-        ('Présentée', 'Présentée'),
-        ("En cours d'acquisition", "En cours d'acquisition"),
-        ('Acquise', 'Acquise')
+class LangageForm(forms.ModelForm):
 
-    )
 
     """ ENRICHISSEMENT DU VOCABULAIRE"""
 
-    img_before_read = forms.ChoiceField(label="Images classifiées avant lecture",
-                                        choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    stories_told = forms.ChoiceField(label="Histoires racontées", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    libraries = forms.ChoiceField(label="Bibliothèques", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    farm = forms.ChoiceField(label="La ferme", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    nomenclature_before_read = forms.ChoiceField(label="Nomenclature avant lecture",
-                                                 choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    question_game = forms.ChoiceField(label="Le jeu des questions", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_1 = forms.CharField(label="Observations Enrichissement du vocabulaire",
-                                           widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_1 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    img_before_read = forms.CharField(
+        label="Images classifiées avant lecture", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    stories_told = forms.CharField(
+        label="Histoires racontées", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    libraries = forms.CharField(
+        label="Bibliothèques", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    farm = forms.CharField(
+        label="La ferme", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    nomenclature_before_read = forms.CharField(
+        label="Nomenclature avant lecture", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    question_game = forms.CharField(
+        label="Le jeu des questions", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_1 = forms.CharField(
+        label="Observations Enrichissement du vocabulaire", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     """ PREPARATION ECRITURE ET LECTURE """
 
-    sound_analysis_game = forms.ChoiceField(label="Le jeu d'analyse des sons",
-                                            choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    rough_letters_diagrams = forms.ChoiceField(label="Les lettres et diagrammes rugeux",
-                                               choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-
-    design_shapes = forms.ChoiceField(label="Les formes à dessins", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    mobile_alphabets_1_2 = forms.ChoiceField(label="Les alphabets mobiles 1 & 2",
-                                             choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    slates = forms.ChoiceField(label="Les ardoises", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    write_different_media = forms.ChoiceField(label="Ecrire : différents supports",
-                                              choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    box_objects_1 = forms.ChoiceField(label="La 1ère boite d'objets", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    box_objects_2 = forms.ChoiceField(label="La 2ème boite d'objets", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    homophony_covers = forms.ChoiceField(label="Les pochettes d'homophonies",
-                                         choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    img_after_read = forms.ChoiceField(label="Images classifiées après lecture",
-                                       choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    read_different_media = forms.ChoiceField(label="Lire : différents supports",
-                                             choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_2 = forms.CharField(label="Observations préparation écriture et lecture",
-                                     widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_2 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    sound_analysis_game = forms.CharField(
+        label="Le jeu d'analyse des sons", required=False, widget=forms.TextInput(attrs={"class": "form-control"}))
+    rough_letters_diagrams = forms.CharField(
+        label="Les lettres et diagrammes rugueux", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    design_shapes = forms.CharField(
+        label="Les formes à dessins", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    mobile_alphabets_1_2 = forms.CharField(
+        label="Les alphabets mobiles 1 & 2", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    slates = forms.CharField(
+        label="Les ardoises", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    write_different_media = forms.CharField(
+        label="Ecrire : différents supports", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    box_objects_1 = forms.CharField(
+        label="La 1ère boite d'objets", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    box_objects_2 = forms.CharField(
+        label="La 2ème boite d'objets", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    homophony_covers = forms.CharField(
+        label="Les pochettes d'homophonies", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    img_after_read = forms.CharField(
+        label="Images classifiées après lecture", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    read_different_media = forms.CharField(
+        label="Lire : différents supports", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_2 = forms.CharField(
+        label="Observations préparation écriture et lecture", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     """ LA NATURE DES MOTS """
 
-    article = forms.ChoiceField(label="L'article", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    adjective = forms.ChoiceField(label="L'adjectif", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    logical_adjective_game = forms.ChoiceField(label="Le jeu de l'adjectif logique",
-                                               choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    detective_game = forms.ChoiceField(label="Le jeu du détective", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    conjunction = forms.ChoiceField(label="La conjonction", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    preposition = forms.ChoiceField(label="La préposition", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    logical_preposition_game = forms.ChoiceField(label="Le jeu de la préposition logique",
-                                                 choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    verb = forms.ChoiceField(label="Le verbe : différents aspects", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    adverb = forms.ChoiceField(label="L'adverbe", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    logical_adverb_game = forms.ChoiceField(label="Le jeu de l'adverbe logique",
-                                            choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    orders_123 = forms.ChoiceField(label="Les ordres 1, 2, 3", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_3 = forms.CharField(label="Observations la nature des mots",
-                                     widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_3 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    article = forms.CharField(
+        label="L'article", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    adjective = forms.CharField(
+        label="L'adjectif", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    logical_adjective_game = forms.CharField(
+        label="Le jeu de l'adjectif logique", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    detective_game = forms.CharField(
+        label="Le jeu du détective", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    conjunction = forms.CharField(
+        label="La conjonction", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    preposition = forms.CharField(
+        label="La préposition", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    logical_preposition_game = forms.CharField(
+        label="Le jeu de la préposition logique", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    verb = forms.CharField(
+        label="Le verbe : différents aspects", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    adverb = forms.CharField(
+        label="L'adverbe", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    logical_adverb_game = forms.CharField(
+        label="Le jeu de l'adverbe logique", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    orders_123 = forms.CharField(
+        label="Les ordres 1, 2, 3", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_3 = forms.CharField(
+        label="Observations la nature des mots", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     """ANALYSE DE LA LECTURE"""
 
-    sentence_analysis_1 = forms.ChoiceField(label="Analyse de la phrase, stade 1",
-                                            choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    sentence_analysis_2 = forms.ChoiceField(label="Analyse de la phrase, stade 2",
-                                            choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    observations_4 = forms.CharField(label="Observations analyse de la lecture",
-                                     widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_4 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    sentence_analysis_1 = forms.CharField(
+        label="Analyse de la phrase, stade 1", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    sentence_analysis_2 = forms.CharField(
+        label="Analyse de la phrase, stade 2", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_4 = forms.CharField(
+        label="Observations analyse de la lecture", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     """ MUSIQUE """
 
-    name_bells = forms.ChoiceField(label="Le nom des clochettes", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    sharp_flat = forms.ChoiceField(label="Dièse et bémol", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    read_write_music = forms.ChoiceField(label="Lecture et écriture musicale",
-                                         choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    bass_clef = forms.ChoiceField(label="La clé de Fa", choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-    read_sheet_music = forms.ChoiceField(label="Lecture de partitions",
-                                         choices=LEVEL_CHOICES, widget=forms.RadioSelect())
-
-    observations_5 = forms.CharField(label="Observations musique",
-                                     widget=forms.Textarea(attrs={"rows": 5, "cols": 81}))
+    title_5 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    name_bells = forms.CharField(
+        label="Le nom des clochettes", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    sharp_flat = forms.CharField(
+        label="Dièse et bémol", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    read_write_music = forms.CharField(
+        label="Lecture et écriture musicale", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    bass_clef = forms.CharField(
+        label="La clé de Fa", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    read_sheet_music = forms.CharField(
+        label="Lecture de partitions", required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    observations_5 = forms.CharField(
+        label="Observations analyse de la lecture", required=False,
+        widget=forms.Textarea(attrs={"rows": 8, "cols": 81}))
 
     class Meta:
         model = Langage
-        fields = '__all__'
+        exclude = ('student',)
 
 
-class LetterForm(forms.Form):
+class LetterForm(forms.ModelForm):
     CHOICES = (
         ('Présentée', 'Présentée'),
         ('Entendue', "Entendue"),
@@ -448,39 +557,107 @@ class LetterForm(forms.Form):
         ('Ecrite', 'Ecrite')
 
     )
-    letter_a = forms.ChoiceField(label="A", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_b = forms.ChoiceField(label="B", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_c = forms.ChoiceField(label="C", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_d = forms.ChoiceField(label="D", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_e = forms.ChoiceField(label="E", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_f = forms.ChoiceField(label="F", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_g = forms.ChoiceField(label="G", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_h = forms.ChoiceField(label="H", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_i = forms.ChoiceField(label="I", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_j = forms.ChoiceField(label="J", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_k = forms.ChoiceField(label="K", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_l = forms.ChoiceField(label="L", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_m = forms.ChoiceField(label="M", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_n = forms.ChoiceField(label="N", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_o = forms.ChoiceField(label="O", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_p = forms.ChoiceField(label="P", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_q = forms.ChoiceField(label="Q", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_r = forms.ChoiceField(label="R", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_s = forms.ChoiceField(label="S", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_t = forms.ChoiceField(label="T", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_u = forms.ChoiceField(label="U", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_v = forms.ChoiceField(label="V", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_w = forms.ChoiceField(label="W", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_x = forms.ChoiceField(label="X", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_y = forms.ChoiceField(label="Y", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
-    letter_z = forms.ChoiceField(label="Z", choices=CHOICES, widget=forms.CheckboxSelectMultiple())
+    letter_a = forms.ChoiceField(
+        label="A", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_b = forms.ChoiceField(
+        label="B", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_c = forms.ChoiceField(
+        label="C", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_d = forms.ChoiceField(
+        label="D", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_e = forms.ChoiceField(
+        label="E", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_f = forms.ChoiceField(
+        label="F", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_g = forms.ChoiceField(
+        label="G", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_h = forms.ChoiceField(
+        label="H", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_i = forms.ChoiceField(
+        label="I", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_j = forms.ChoiceField(
+        label="J", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_k = forms.ChoiceField(
+        label="K", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_l = forms.ChoiceField(
+        label="L", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_m = forms.ChoiceField(
+        label="M", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_n = forms.ChoiceField(
+        label="N", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_o = forms.ChoiceField(
+        label="O", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_p = forms.ChoiceField(
+        label="P", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_q = forms.ChoiceField(
+        label="Q", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_r = forms.ChoiceField(
+        label="R", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_s = forms.ChoiceField(
+        label="S", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_t = forms.ChoiceField(
+        label="T", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_u = forms.ChoiceField(
+        label="U", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_v = forms.ChoiceField(
+        label="V", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_w = forms.ChoiceField(
+        label="W", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_x = forms.ChoiceField(
+        label="X", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_y = forms.ChoiceField(
+        label="Y", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
+    letter_z = forms.ChoiceField(
+        label="Z", required=False,
+        choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))
 
     class Meta:
         model = Letter
         exclude = ('student',)
 
 
+class CommentForm(forms.ModelForm):
 
+    trim_1 = forms.CharField(
+        label="Trimestre 1", required=False,
+        widget=forms.Textarea(attrs={"rows": 10, "cols": 100}))
+
+    trim_2 = forms.CharField(
+        label="Trimestre 2", required=False,
+        widget=forms.Textarea(attrs={"rows": 10, "cols": 100}))
+
+    trim_3 = forms.CharField(
+        label="Trimestre 3", required=False,
+        widget=forms.Textarea(attrs={"rows": 10, "cols": 100}))
+
+    class Meta:
+        model = Comments
+        exclude = ('student',)
 
 
 

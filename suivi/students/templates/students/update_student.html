@@ -1,0 +1,23 @@
+{% extends "authentication/base.html" %}
+{% block content %}
+<h1>MODIFIER</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-">
+            <div class="activiy_form">
+                <form method='post'> {% csrf_token %}
+                    <table class="table table-bordered">
+                        {{ form.as_table}}
+                    </table>
+                    <button class="btn btn-outline-dark" type='submit' >Enregistrer</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,245 @@
+{% extends "three_six/base.html" %}
+
+{% block title %}Langage - {{student.firstname}} {{student.lastname}}{% endblock %}
+
+{% block content %}
+<h1>LANGAGE</h1>
+<a href="{% url 'Langage_change' student_id=lang.student.id %}">Modifier</a>
+
+<div class="big_table">
+    <h2>Enrichissement du vocabulaire</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Activités</th>
+          <th scope="col">Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Images classifiées avant lecture</td>
+          <td>{{lang.img_before_read}}</td>
+        </tr>
+        <tr>
+          <td>Histoires racontées</td>
+          <td>{{lang.stories_told}}</td>
+        </tr>
+        <tr>
+          <td>Bibliothèques</td>
+          <td>{{lang.libraries}}</td>
+        </tr>
+        <tr>
+          <td>La ferme</td>
+          <td>{{lang.farm}}</td>
+        </tr>
+        <tr>
+          <td>Nomenclature avant lecture</td>
+          <td>{{lang.nomenclature_before_read}}</td>
+        </tr>
+        <tr>
+          <td>Le jeu des questions</td>
+          <td>{{lang.question_game}}</td>
+        </tr>
+      </tbody>
+      <p>{{lang.observations_1}}</p>
+    </table>
+  <h2>Préparation écriture et lecture</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Activités</th>
+          <th scope="col">Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Le jeu d'analyse des sons</td>
+          <td>{{lang.sound_analysis_game}}</td>
+        </tr>
+        <tr>
+          <td>Les lettres et diagrammes rugueux</td>
+          <td>{{lang.rough_letters_diagrams}}</td>
+        </tr>
+        <tr>
+          <td>Les formes à dessins</td>
+          <td>{{lang.design_shapes}}</td>
+        </tr>
+        <tr>
+          <td>Les alphabets mobiles 1 & 2</td>
+          <td>{{lang.mobile_alphabets_1_2}}</td>
+        </tr>
+        <tr>
+          <td>Les ardoises</td>
+          <td>{{lang.slates}}</td>
+        </tr>
+        <tr>
+          <td>Ecrire : différents supports</td>
+          <td>{{lang.write_different_media}}</td>
+        </tr>
+      <tr>
+          <td>La 1ère boite d'objets</td>
+          <td>{{lang.box_objects_1}}</td>
+        </tr>
+      <tr>
+          <td>La 2ème boite d'objets</td>
+          <td>{{lang.box_objects_2}}</td>
+        </tr>
+      <tr>
+          <td>Les pochettes d'homophonies</td>
+          <td>{{lang.homophony_covers}}</td>
+        </tr>
+      <tr>
+          <td>Images classifiées après lecture</td>
+          <td>{{lang.img_after_read}}</td>
+        </tr>
+      <tr>
+          <td>Lire : différents supports</td>
+          <td>{{lang.read_different_media}}</td>
+        </tr>
+      </tbody>
+      <p>{{lang.observations_2}}</p>
+    </table>
+  </table>
+  <h2>La nature des mots</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Activités</th>
+          <th scope="col">Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>L'article</td>
+          <td>{{lang.article}}</td>
+        </tr>
+        <tr>
+          <td>L'adjectif</td>
+          <td>{{lang.adjective}}</td>
+        </tr>
+        <tr>
+          <td>Le jeu de l'adjectif logique</td>
+          <td>{{lang.logical_adjective_game}}</td>
+        </tr>
+        <tr>
+          <td>Le jeu du détective</td>
+          <td>{{lang.detective_game}}</td>
+        </tr>
+        <tr>
+          <td>La conjonction</td>
+          <td>{{lang.conjunction}}</td>
+        </tr>
+        <tr>
+          <td>La préposition</td>
+          <td>{{lang.preposition}}</td>
+        </tr>
+      <tr>
+          <td>Le jeu de la préposition logique</td>
+          <td>{{lang.logical_preposition_game}}</td>
+        </tr>
+      <tr>
+          <td>Le verbe : différents aspects</td>
+          <td>{{lang.verb}}</td>
+        </tr>
+      <tr>
+          <td>L'adverbe</td>
+          <td>{{lang.adverb}}</td>
+        </tr>
+      <tr>
+          <td>Le jeu de l'adverbe logique</td>
+          <td>{{lang.logical_adverb_game}}</td>
+        </tr>
+      <tr>
+          <td>Les ordres 1, 2, 3</td>
+          <td>{{lang.orders_123}}</td>
+        </tr>
+      </tbody>
+      <p>{{lang.observations_3}}</p>
+    </table>
+  <h2>Analyse de la lecture</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Activités</th>
+          <th scope="col">Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Analyse de la phrase, stade 1</td>
+          <td>{{lang.sentence_analysis_1}}</td>
+        </tr>
+        <tr>
+          <td>Analyse de la phrase, stade 2</td>
+          <td>{{lang.sentence_analysis_2}}</td>
+        </tr>
+      </tbody>
+      <p>{{lang.observations_4}}</p>
+    </table>
+  <h2>Musique</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Activités</th>
+          <th scope="col">Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Le nom des clochettes</td>
+          <td>{{lang.name_bells}}</td>
+        </tr>
+        <tr>
+          <td>Dièse et bémol</td>
+          <td>{{lang.sharp_flat}}</td>
+        </tr>
+      <tr>
+          <td>Lecture et écriture musicale</td>
+          <td>{{lang.read_write_music}}</td>
+        </tr>
+      <tr>
+          <td>La clé de Fa</td>
+          <td>{{lang.bass_clef}}</td>
+        </tr>
+      <tr>
+          <td>Lecture de partitions</td>
+          <td>{{lang.read_sheet_music}}</td>
+        </tr>
+      </tbody>
+      <p>{{lang.observations_5}}</p>
+    </table>
+  <h2>Lettres</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Activités</th>
+          <th scope="col">Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>A</td>
+          <td>{{lt.letter_a}}</td>
+        </tr>
+        <tr>
+            <td>B</td>
+          <td>{{lt.letter_b}}</td>
+        </tr>
+      <tr>
+          <td>C</td>
+          <td>{{lt.letter_c}}</td>
+        </tr>
+      <tr>
+          <td>D</td>
+          <td>{{lt.letter_d}}</td>
+        </tr>
+      <tr>
+          <td>E</td>
+          <td>{{lt.letter_e}}</td>
+        </tr>
+      </tbody>
+      <p>{{lang.observations_5}}</p>
+    </table>
+
+</div>
+{% endblock content %}

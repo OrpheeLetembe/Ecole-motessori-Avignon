@@ -6,26 +6,27 @@ from ambiance.models import Ambiance
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=60, label="",
-                               widget=forms.TextInput(attrs={"class": "user_name", "placeholder": "Nom d'utilisateur",
-                                                             "size": 40}))
-    password = forms.CharField(max_length=60, label="",
-                               widget=forms.PasswordInput(attrs={"class": "pwd", "placeholder": "Mot de passe",
-                                                                 "size": 40}))
+    username = forms.CharField(max_length=60, label="Nom d'utilisateur",
+                               widget=forms.TextInput(attrs={"class": "form-control"}))
+    password = forms.CharField(max_length=60, label="Mot de passe",
+                               widget=forms.PasswordInput(attrs={"class": "form-control"}))
 
 
 class SignupForm(UserCreationForm):
 
-    username = forms.CharField(required=True, label="Nom d'utilisateur", widget=forms.TextInput(attrs={"size": 60}))
-    firstname = forms.CharField(label="Prénom", widget=forms.TextInput(attrs={"size": 60}))
-    lastname = forms.CharField(label="Nom", widget=forms.TextInput(attrs={"size": 60}))
-    ambiance = forms.ModelChoiceField(label="Ambiance", queryset=Ambiance.objects.all())
-    password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={"size": 60}))
-    password2 = forms.CharField(label="Confirmer mot de passe", widget=forms.PasswordInput(attrs={"size": 60}))
+    username = forms.CharField(required=True, label="Nom d'utilisateur",
+                               widget=forms.TextInput(attrs={"class": "form-control"}))
+    firstname = forms.CharField(label="Prénom", widget=forms.TextInput(attrs={"class": "form-control"}))
+    lastname = forms.CharField(label="Nom", widget=forms.TextInput(attrs={"class": "form-control"}))
+    ambiance = forms.ModelChoiceField(
+        label="Ambiance", required=False, queryset=Ambiance.objects.all(), empty_label="-----",
+        widget=forms.Select(attrs={'class': 'form-control'}))
+    password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={"class": "form-control"}))
+    password2 = forms.CharField(label="Confirmer mot de passe",
+                                widget=forms.PasswordInput(attrs={"class": "form-control"}))
 
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
 
 
-class ParentLoginForm(forms.Form):
-    code = forms.CharField(max_length=60, label="Code", widget=forms.PasswordInput(attrs={"size": 40}))
+

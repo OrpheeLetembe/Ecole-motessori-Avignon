@@ -2,20 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render, get_object_or_404
 
 from . import forms
-from students.models import Students
-from three_six.models import PracticalLife
-
-
-def home_page(request):
-    return render(request, "authentication/home.html")
-
-
-def logout_page(request):
-    """Function allowing the disconnection of a user.
-    After disconnection, the user is redirected to the login page
-    """
-    logout(request)
-    return redirect('home')
+from ambiance.models import Ambiance
 
 
 def login_page(request):
@@ -47,32 +34,22 @@ def signup_page(request):
     if request.method == "POST":
         form = forms.SignupForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            ambiance_id = request.POST['ambiance']
+            ambiance = Ambiance.objects.get(id=ambiance_id)
+            user.ambiance = ambiance
+            user.save()
             login(request, user)
             return redirect('all_child')
 
     return render(request, "authentication/signup.html", context={"form": form})
 
 
-def login_parent(request):
-
-    form = forms.ParentLoginForm()
-    if request.method == 'POST':
-        form = forms.ParentLoginForm(request.POST)
-        if form.is_valid():
-            try:
-                student = Students.objects.get(code=form.data['code'])
-                practical_life = PracticalLife.objects.get(student=student)
-                context = {
-                    'student': student,
-                    'pl': practical_life
-                }
-
-                return render(request, 'three_six/praticlife.html', context)
-            except Students.DoesNotExist:
-                message = "Code invalide."
-                return render(request, "authentication/login_parent.html", context={'form': form, 'message': message})
-
-    return render(request, "authentication/login_parent.html", context={'form': form})
+def logout_page(request):
+    """Function allowing the disconnection of a user.
+    After disconnection, the user is redirected to the login page
+    """
+    logout(request)
+    return redirect('login')
 
 

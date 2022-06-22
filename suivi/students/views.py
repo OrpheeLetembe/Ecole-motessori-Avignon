@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from three_six.models import PracticalLife, SensoryMaterial, Math, Langage, Letter
+from three_six.models import PracticalLife, SensoryMaterial, Math, Langage, Letter, Comments
 from . import forms
 from .models import Students
 
@@ -18,6 +18,7 @@ def add_student(request):
             Math.objects.create(student=student)
             Langage.objects.create(student=student)
             Letter.objects.create(student=student)
+            Comments.objects.create(student=student)
 
             return redirect('all_child')
 
@@ -36,6 +37,19 @@ def students_list(request):
     return render(request, 'students/all.html', context=context)
 
 
+def update_student(request, student_id):
 
-
+    student = Students.objects.get(id=student_id)
+    if request.method == 'POST':
+        form = forms.StudentForm(request.POST, request.FILES, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('all_child')
+    else:
+        form = forms.StudentForm(instance=student)
+    context = {
+        'form': form,
+        'student': student
+    }
+    return render(request, 'students/update_student.html', context)
 

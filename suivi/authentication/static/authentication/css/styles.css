@@ -1,0 +1,21 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&display=swap');
+
+body{
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 5px;
+}
+.block_page{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+

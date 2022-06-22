@@ -7,6 +7,7 @@ from . import views
 urlpatterns = [
     path("child/add", views.add_student, name='add_child'),
     path("child/all", views.students_list, name='all_child'),
+    path("student_change/<int:student_id>", views.update_student, name='student_change'),
 
 ]
 

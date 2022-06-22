@@ -12,10 +12,13 @@
     </head>
     <body>
         <div class="container-fluid block_page">
-            <header >
-            <img src="{% static 'authentication/logo.png' %}" alt="LOGO" class="image_logo" >
+            <header class="site-header">
+                    <img src="{% static 'authentication/logo.png' %}" alt="LOGO" class="image_logo" width="200" >
+                    <h1>SUIVI DES APPRENTISSAGES</h1>
+                <h1></h1>
             </header>
-            <div class="container">
+
+            <div class="container pt-5" >
 
                  {% block content %}{% endblock content %}
             </div>

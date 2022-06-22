@@ -16,21 +16,32 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10">
-                            <img src="{% static 'authentication/logo.png' %}" alt="LOGO" width="100" >
+                            <img src="{% static 'authentication/logo.png' %}" alt="LOGO" width="200" >
                         </div>
                         <div class="col-md-2">
+                            <a href="{% url 'all_child' %}">Retour</a> <br>
                             <a href="{% url 'logout' %}">Se déconnecter</a>
-
                         </div>
-
+                    </div>
+                </div>
+            </header>
+            <div class="container pt-5">
+                <div class="row">
+                    <div class="col-md-2">
+                         <p><img class="rounded-circle" src="{{student.image.url}}"></p>
+                        <ul class="navbar">
+                            <li><a href="{% url 'Vie_Pratique' student_id=student.id %}">Vie Pratique</a> </li>
+                            <li><a href="{% url 'Materiel_sensoriel' student_id=student.id %}">Matériel Sensoriel</a> </li>
+                            <li><a href="{% url 'Mathematiques' student_id=student.id %}">Mathématiques</a> </li>
+                            <li><a href="{% url 'Langage' student_id=student.id %}">Langage</a> </li>
+                            <li><a href="{% url 'Observations' student_id=student.id %}">Observations</a> </li>
+                        </ul>
                     </div>
 
+                    <div class="col-md-10">
+                        {% block content %}{% endblock content %}
+                    </div>
                 </div>
-
-            </header>
-            <div class="container">
-
-                 {% block content %}{% endblock content %}
             </div>
         </div>
     </body>

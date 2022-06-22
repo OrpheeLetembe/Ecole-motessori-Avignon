@@ -1,0 +1,51 @@
+{% extends "three_six/base.html" %}
+
+{% block title %}{Observations - {{student.firstname}} {{student.lastname}}{% endblock %}
+
+{% block content %}
+<h1>OBSERVATIONS</h1>
+<a href="{% url 'Observations_change' student_id=trim.student.id %}">Modifier</a>
+
+<div class="big_table">
+    <div class="big_table">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Trimestre 1</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{trim.trim_1}}</td>
+        </tr>
+        </tbody>
+    </table>
+        <div class="big_table">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Trimestre 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{trim.trim_2}}</td>
+        </tr>
+        </tbody>
+    </table>
+      <div class="big_table">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Trimestre 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{trim.trim_3}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+{% endblock content %}

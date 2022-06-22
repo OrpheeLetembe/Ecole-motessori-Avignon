@@ -1,32 +1,15 @@
 {% extends "three_six/base.html" %}
 
-{% block title %}{{ambiance.name}}{% endblock %}
+{% block title %}Vie Pratique - {{student.firstname}} {{student.lastname}}{% endblock %}
 
 {% block content %}
 <h1>VIE PRATIQUE</h1>
-
-<div class="container pt-5">
-  <div class="row">
-  <div class="col-md-2 ">
-    <a href="{% url 'Vie_Pratique' student_id=student.id %}">
-      <p><img class="ticket_post_img" src="{{student.image.url}}"></p>
-    </a>
-        <ul class="navbar">
-            <li><a href="">Vie Pratique</a> </li>
-            <li><a href="">Vie Matériel Sensoriel</a> </li>
-            <li><a href="">Mathématiques</a> </li>
-            <li><a href="">Langage</a> </li>
-            <li><a href="">Observations</a> </li>
-        </ul>
-    <li><a href="{% url 'Vie_Pratique_change' student_id=student.id %}">Modifier</a></li>
-
-  </div>
-  <div class="col-md-10 ">
+ <a href="{% url 'Vie_Pratique_change' student_id=pls.student.id %}">Modifier</a>
     <div class="big_table">
 
     <h2>Exercices préliminaires</h2>
 
-    <table class="table">
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th scope="col">Activités</th>
@@ -36,37 +19,35 @@
       <tbody>
         <tr>
           <td>Se déplacer dans l'ambiance</td>
-          <td>{{pl.move_mood}}</td>
+          <td>{{pls.move_mood}}</td>
         </tr>
         <tr>
           <td>Porter une table seul, à deux</td>
-          <td>{{pl.carry_table}}</td>
+          <td>{{pls.carry_table}}</td>
         </tr>
         <tr>
           <td>Porter un plateau, un objet fragile</td>
-          <td>{{pl.Carry_tray}}</td>
+          <td>{{pls.Carry_tray}}</td>
         </tr>
         <tr>
           <td>Porter, dérouler et rouler un tapis</td>
-          <td>{{pl.Carrying_mat}}</td>
+          <td>{{pls.Carrying_mat}}</td>
         </tr>
         <tr>
           <td>Ouvrir et fermer une porte</td>
-          <td>{{pl.open_close_door}}</td>
+          <td>{{pls.open_close_door}}</td>
         </tr>
         <tr>
           <td>Ouvrir et fermer une fenêtre, un tiroir</td>
-          <td>{{pl.open_close_window}}</td>
-        </tr>
-        <tr>
-
-          <td>{{pl.observations_preliminary_exercises}}</td>
+          <td>{{pls.open_close_window}}</td>
         </tr>
      </tbody>
+      <p>{{pls.observations_preliminary_exercises}}</p>
+
     </table>
     <h2>Soin du milieu intérieur</h2>
 
-    <table class="table">
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th scope="col">Activités</th>
@@ -75,109 +56,107 @@
       </thead>
       <tbody>
         <tr>
-          <td>Presser une éponge</td>
-          <td>{{pl.squeeze_sponge}}</td>
+          <td >Presser une éponge</td>
+          <td>{{pls.squeeze_sponge}}</td>
         </tr>
         <tr>
           <td>Visser, dévisser des boulons</td>
-          <td>{{pl.Screw_bolts}}</td>
+          <td>{{pls.Screw_bolts}}</td>
         </tr>
         <tr>
           <td>Ouvrir et fermer un cadenas</td>
-          <td>{{pl.open_close_padlock}}</td>
+          <td>{{pls.open_close_padlock}}</td>
         </tr>
         <tr>
           <td>Se servir de pinces à linge</td>
-          <td>{{pl.use_clothes_pegs}}</td>
+          <td>{{pls.use_clothes_pegs}}</td>
         </tr>
         <tr>
           <td>Ouvrir et fermer des boites</td>
-          <td>{{pl.open_close_boxes}}</td>
+          <td>{{pls.open_close_boxes}}</td>
         </tr>
         <tr>
           <td>Ouvrir et fermer des flacons</td>
-          <td>{{pl.open_close_bottles}}</td>
+          <td>{{pls.open_close_bottles}}</td>
         </tr>
         <tr>
           <td>Plier des étoffes</td>
-          <td>{{pl.fold_fabrics}}</td>
+          <td>{{pls.fold_fabrics}}</td>
         </tr>
         <tr>
           <td>Plier du papier</td>
-          <td>{{pl.fold_paper}}</td>
+          <td>{{pls.fold_paper}}</td>
         </tr>
         <tr>
           <td>Couper du papier avec des ciseaux</td>
-          <td>{{pl.cut_paper_scissors}}</td>
+          <td>{{pls.cut_paper_scissors}}</td>
         </tr>
         <tr>
           <td>Coller du papier</td>
-          <td>{{pl.paste_paper}}</td>
+          <td>{{pls.paste_paper}}</td>
         </tr>
         <tr>
           <td>Epousseter avec un chiffon, un plumeau</td>
-          <td>{{pl.dust}}</td>
+          <td>{{pls.dust}}</td>
         </tr>
         <tr>
           <td>Balayer</td>
-          <td>{{pl.sweep}}</td>
+          <td>{{pls.sweep}}</td>
         </tr>
          <tr>
           <td>Brosser un tapis</td>
-          <td>{{pl.brush_carpet}}</td>
+          <td>{{pls.brush_carpet}}</td>
         </tr>
         <tr>
           <td>Transvaser avec une cuillère</td>
-          <td>{{pl.transfer_spoon}}</td>
+          <td>{{pls.transfer_spoon}}</td>
         </tr>
         <tr>
           <td>Verser du riz</td>
-          <td>{{pl.pour_rice}}</td>
+          <td>{{pls.pour_rice}}</td>
         </tr>
         <tr>
           <td>Verser du sable</td>
-          <td>{{pl.pour_sand}}</td>
+          <td>{{pls.pour_sand}}</td>
         </tr>
         <tr>
           <td>Verser de l'eau</td>
-          <td>{{pl.pour_water}}</td>
+          <td>{{pls.pour_water}}</td>
         </tr>
         <tr>
           <td>Verser de l'eau dans des verres</td>
-          <td>{{pl.pour_water_glasses}}</td>
+          <td>{{pls.pour_water_glasses}}</td>
         </tr>
         <tr>
           <td>Nettoyer un miroir</td>
-          <td>{{pl.clean_mirror}}</td>
+          <td>{{pls.clean_mirror}}</td>
         </tr>
         <tr>
           <td>Astiquer les cuivres</td>
-          <td>{{pl.polish_brass}}</td>
+          <td>{{pls.polish_brass}}</td>
         </tr>
         <tr>
           <td>Soigner les plantes</td>
-          <td>{{pl.take_care_plants}}</td>
+          <td>{{pls.take_care_plants}}</td>
         </tr>
         <tr>
           <td>Changer l'eau des fleurs</td>
-          <td>{{pl.chang_flower_water}}</td>
+          <td>{{pls.chang_flower_water}}</td>
         </tr>
         <tr>
           <td>Laver la table</td>
-          <td>{{pl.wash_table}}</td>
+          <td>{{pls.wash_table}}</td>
         </tr>
         <tr>
           <td>Laver du linge</td>
-          <td>{{pl.wash_clothes}}</td>
-        </tr>
-        <tr>
-          <td>{{pl.observations_care_interior}}</td>
+          <td>{{pls.wash_clothes}}</td>
         </tr>
      </tbody>
+      <p>{{pls.observations_care_interior}}</p>
   </table>
      <h2>Soin de la personne</h2>
 
-    <table class="table">
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th scope="col">Activités</th>
@@ -187,60 +166,58 @@
       <tbody>
         <tr>
           <td>Cadre à boutons pressions</td>
-          <td>{{pl.frame_press_studs}}</td>
+          <td>{{pls.frame_press_studs}}</td>
         </tr>
         <tr>
           <td>Cadre à gros boutons</td>
-          <td>{{pl.frame_big_studs}}</td>
+          <td>{{pls.frame_big_studs}}</td>
         </tr>
         <tr>
           <td>Cadre à petits boutons</td>
-          <td>{{pl.frame_small_studs}}</td>
+          <td>{{pls.frame_small_studs}}</td>
         </tr>
         <tr>
           <td>Cadre à glissière</td>
-          <td>{{pl.frame_slide}}</td>
+          <td>{{pls.frame_slide}}</td>
         </tr>
         <tr>
           <td>Cadre à agrafes</td>
-          <td>{{pl.frame_staple}}</td>
+          <td>{{pls.frame_staple}}</td>
         </tr>
         <tr>
           <td>Cadre à boucles</td>
-          <td>{{pl.frame_loop}}</td>
+          <td>{{pls.frame_loop}}</td>
         </tr>
         <tr>
           <td>Cadre à épingles à nourrice</td>
-          <td>{{pl.frame_safety_pin}}</td>
+          <td>{{pls.frame_safety_pin}}</td>
         </tr>
         <tr>
           <td>Cadre à noeuds</td>
-          <td>{{pl.frame_node}}</td>
+          <td>{{pls.frame_node}}</td>
         </tr>
         <tr>
           <td>Cadre à laçage</td>
-          <td>{{pl.frame_lacing}}</td>
+          <td>{{pls.frame_lacing}}</td>
         </tr>
         <tr>
           <td>Se laver les mains</td>
-          <td>{{pl.wash_hands}}</td>
+          <td>{{pls.wash_hands}}</td>
         </tr>
         <tr>
           <td>Cirer ses chaussures</td>
-          <td>{{pl.shine_shoes}}</td>
+          <td>{{pls.shine_shoes}}</td>
         </tr>
         <tr>
           <td>Coudre</td>
-          <td>{{pl.sew}}</td>
-        </tr>
-        <tr>
-          <td>{{pl.observations_personal_care}}</td>
+          <td>{{pls.sew}}</td>
         </tr>
      </tbody>
+      <p>{{pls.observations_personal_care}}</p>
   </table>
      <h2>Jeux collectifs</h2>
 
-    <table class="table">
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th scope="col">Activités</th>
@@ -250,16 +227,14 @@
       <tbody>
         <tr>
           <td>Marcher sur la ligne</td>
-          <td>{{pl.walk_line}}</td>
+          <td>{{pls.walk_line}}</td>
         </tr>
         <tr>
           <td>Leçon de silence</td>
-          <td>{{pl.lesson_silence}}</td>
-        </tr>
-        <tr>
-          <td>{{pl.observations_collective_games}}</td>
+          <td>{{pls.lesson_silence}}</td>
         </tr>
      </tbody>
+      <p>{{pls.observations_collective_games}}</p>
   </table>
 
 
@@ -267,7 +242,7 @@
   </div>
 
 
-
+<!--
 </div>
 
 
@@ -285,6 +260,6 @@
 </div>
 
 
-
+-->
 
 {% endblock content %}

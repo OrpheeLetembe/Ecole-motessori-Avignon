@@ -6,4 +6,5 @@ from ambiance.models import Ambiance
 
 class User(AbstractUser):
 
-    ambiance = models.ForeignKey(Ambiance, null=True, blank=True, on_delete=models.CASCADE)
+    ambiance = models.ForeignKey(Ambiance, on_delete=models.CASCADE)
+

@@ -1,20 +1,18 @@
 {% extends "three_six/base.html" %}
-
-{% block title %}{{ambiance.name}}{% endblock %}
-
+{% block title %}Mathématiques - {{student.firstname}} {{student.lastname}}{% endblock %}
 {% block content %}
-<h1>VIE PRATIQUE</h1>
+<h1>MATHEMATIQUES</h1>
+
 <div class="container">
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-">
             <div class="activiy_form">
                 <form method='post'> {% csrf_token %}
-                    <ul>
-                        {{ form.as_ul}}
-                    </ul>
-
-                    <button class="btn-outline-dark" type='submit' >Enregistrer</button>
+                    <table class="table table-bordered">
+                        {{ form.as_table}}
+                    </table>
+                    <button class="btn btn-outline-dark" type='submit' >Enregistrer</button>
                 </form>
             </div>
         </div>

@@ -6,20 +6,12 @@ from ambiance.models import Ambiance
 
 
 class Students(models.Model):
-    BOIS = 'BOIS'
-    TERRE = 'TERRE'
 
-    ENVIRONMENT_CHOICES = (
-        (BOIS, 'Bois'),
-        (TERRE, 'Terre'),
-
-    )
     image = models.ImageField(null=True, blank=True)
     firstname = models.CharField(max_length=25)
     lastname = models.CharField(max_length=25)
     date_of_birth = models.DateField()
     ambiance = models.ForeignKey(Ambiance, on_delete=models.CASCADE)
-    code = models.CharField(max_length=20, unique=True)
     observations_trim1 = models.TextField(null=True, blank=True)
     observations_trim2 = models.TextField(null=True, blank=True)
     observations_trim3 = models.TextField(null=True, blank=True)
@@ -29,7 +21,6 @@ class Students(models.Model):
     class Meta:
         verbose_name = "Student"
         verbose_name_plural = "Students"
-
 
     IMAGE_MAX_SIZE = (100, 100)
 

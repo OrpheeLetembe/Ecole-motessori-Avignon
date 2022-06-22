@@ -1,17 +1,13 @@
-% extends "three_six/base.html" %}
+{% extends "three_six/base.html" %}
 
-{% block title %}{{ambiance.name}}{% endblock %}
+{% block title %}Matériel Sensoriel - {{student.firstname}} {{student.lastname}}{% endblock %}
 
 {% block content %}
-
-<div>
-   <h2>{{student.firstname}} {{student.lastname}}</h2>
-</div>
 <h1>MATERIEL SENSORIEL</h1>
-
+<a href="{% url 'Materiel_sensoriel_change' student_id=mss.student.id %}">Modifier</a>
 <div class="big_table">
 
-  <table class="table">
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th scope="col">Activités</th>
@@ -21,244 +17,242 @@
     <tbody>
       <tr>
         <td>Emboitements cylindriques 1</td>
-        <td>{{ms.cylindrical_sockets_1}}</td>
+        <td>{{mss.cylindrical_sockets_1}}</td>
       </tr>
       <tr>
         <td>Emboitements cylindriques 2</td>
-        <td>{{ms.cylindrical_sockets_2}}</td>
+        <td>{{mss.cylindrical_sockets_2}}</td>
       </tr>
       <tr>
         <td>Emboitements cylindriques 3</td>
-        <td>{{ms.cylindrical_sockets_3}}</td>
+        <td>{{mss.cylindrical_sockets_3}}</td>
       </tr>
       <tr>
         <td>Emboitements cylindriques 4</td>
-        <td>{{ms.cylindrical_sockets_4}}</td>
+        <td>{{mss.cylindrical_sockets_4}}</td>
       </tr>
       <tr>
         <td>La tour rose</td>
-        <td>{{ms.pink_tower}}</td>
+        <td>{{mss.pink_tower}}</td>
       </tr>
       <tr>
         <td>L'escalier marron</td>
-        <td>{{ms.brown_staircase}}</td>
+        <td>{{mss.brown_staircase}}</td>
       </tr>
       <tr>
         <td>Les barres rouges</td>
-        <td>{{ms.red_bars}}</td>
+        <td>{{mss.red_bars}}</td>
       </tr>
       <tr>
         <td>Les tables des couleurs 1</td>
-        <td>{{ms.color_table_1}}</td>
+        <td>{{mss.color_table_1}}</td>
       </tr>
       <tr>
         <td>Les tables des couleurs 2</td>
-        <td>{{ms.color_table_2}}</td>
+        <td>{{mss.color_table_2}}</td>
       </tr>
       <tr>
         <td>Les tables des couleurs 3</td>
-        <td>{{ms.color_table_3}}</td>
+        <td>{{mss.color_table_3}}</td>
       </tr>
       <tr>
         <td>Le cabinet de géométrie/plateau</td>
-        <td>{{ms.geometry_tray}}</td>
+        <td>{{mss.geometry_tray}}</td>
       </tr>
       <tr>
         <td>Le cabinet de géométrie/cartes</td>
-        <td>{{ms.geometry_drawers}}</td>
+        <td>{{mss.geometry_drawers}}</td>
       </tr>
       <tr>
         <td>Le cabinet de géométrie/tiroirs</td>
-        <td>{{ms.geometry_drawers}}</td>
+        <td>{{mss.geometry_drawers}}</td>
       </tr>
       <tr>
         <td>Le cabinet de géométrie/cartes</td>
-        <td>{{ms.geometry_maps}}</td>
+        <td>{{mss.geometry_maps}}</td>
       </tr>
       <tr>
         <td>Lisse et rugueux</td>
-        <td>{{ms.smooth_rough}}</td>
+        <td>{{mss.smooth_rough}}</td>
       </tr>
       <tr>
         <td>Lisse et rugueux : les tablettes</td>
-        <td>{{ms.smooth_rough_table}}</td>
+        <td>{{mss.smooth_rough_table}}</td>
       </tr>
       <tr>
         <td>Les étoffes</td>
-        <td>{{ms.fabrics}}</td>
+        <td>{{mss.fabrics}}</td>
       </tr>
       <tr>
         <td>Les solides géométriques</td>
-        <td>{{ms.geometric_solids}}</td>
+        <td>{{mss.geometric_solids}}</td>
       </tr>
       <tr>
         <td>Le sac à mystères</td>
-        <td>{{ms.mystery_bag}}</td>
+        <td>{{mss.mystery_bag}}</td>
       </tr>
       <tr>
         <td>Les sacs stéréognostiques</td>
-        <td>{{ms.stereognostic_bag}}</td>
+        <td>{{mss.stereognostic_bag}}</td>
       </tr>
       <tr>
         <td>Le tri des graines</td>
-        <td>{{ms.seed_sorting}}</td>
+        <td>{{mss.seed_sorting}}</td>
       </tr>
       <tr>
         <td>Les tablettes baryques</td>
-        <td>{{ms.baryque_tablets}}</td>
+        <td>{{mss.baryque_tablets}}</td>
       </tr>
       <tr>
         <td>Les boites à bruits</td>
-        <td>{{ms.noise_boxes}}</td>
+        <td>{{mss.noise_boxes}}</td>
       </tr>
       <tr>
         <td>Les odeurs</td>
-        <td>{{ms.smells}}</td>
+        <td>{{mss.smells}}</td>
       </tr>
       <tr>
         <td>Les saveurs</td>
-        <td>{{ms.flavours}}</td>
+        <td>{{mss.flavours}}</td>
       </tr>
       <tr>
         <td>Les bouteilles thermiques</td>
-        <td>{{ms.thermal_bottles}}</td>
+        <td>{{mss.thermal_bottles}}</td>
       </tr>
       <tr>
         <td>Les tablettes thermiques</td>
-        <td>{{ms.thermal_tablets}}</td>
+        <td>{{mss.thermal_tablets}}</td>
       </tr>
       <tr>
         <td>Les triangles constructeurs 1</td>
-        <td>{{ms.constructor_triangles_1}}</td>
+        <td>{{mss.constructor_triangles_1}}</td>
       </tr>
       <tr>
         <td>Les triangles constructeurs 2</td>
-        <td>{{ms.constructor_triangles_2}}</td>
+        <td>{{mss.constructor_triangles_2}}</td>
       </tr>
       <tr>
         <td>Les triangles constructeurs 3</td>
-        <td>{{ms.constructor_triangles_3}}</td>
+        <td>{{mss.constructor_triangles_3}}</td>
       </tr>
       <tr>
         <td>Les triangles constructeurs 4</td>
-        <td>{{ms.constructor_triangles_4}}</td>
+        <td>{{mss.constructor_triangles_4}}</td>
       </tr>
       <tr>
         <td>Les triangles constructeurs 5/td>
-        <td>{{ms.constructor_triangles_5}}</td>
+        <td>{{mss.constructor_triangles_5}}</td>
       </tr>
       <tr>
         <td>Les triangles constructeurs 6</td>
-        <td>{{ms.constructor_triangles_6}}</td>
+        <td>{{mss.constructor_triangles_6}}</td>
       </tr>
       <tr>
         <td>Les figures superposées</td>
-        <td>{{ms.superimposed_figures}}</td>
+        <td>{{mss.superimposed_figures}}</td>
       </tr>
       <tr>
         <td>Le cube du binôme</td>
-        <td>{{ms.binomial_cube}}</td>
+        <td>{{mss.binomial_cube}}</td>
       </tr>
       <tr>
         <td>Le cube du trinôme</td>
-        <td>{{ms.trinomial_cube}}</td>
+        <td>{{mss.trinomial_cube}}</td>
       </tr>
        <tr>
         <td>La table de Pythagore</td>
-        <td>{{ms.pythagore_table}}</td>
+        <td>{{mss.pythagore_table}}</td>
       </tr>
       <tr>
         <td>Les cylindres de couleur</td>
-        <td>{{ms.colored_cylinders}}</td>
+        <td>{{mss.colored_cylinders}}</td>
       </tr>
       <tr>
         <td>Le cabinet de botaniques/plateau</td>
-        <td>{{ms.botanical_tray}}</td>
+        <td>{{mss.botanical_tray}}</td>
       </tr>
        <tr>
         <td>Le cabinet de botaniques/cartes</td>
-        <td>{{ms.botanical_maps}}</td>
+        <td>{{mss.botanical_maps}}</td>
       </tr>
        <tr>
         <td>Les clochettes</td>
-        <td>{{ms.bells}}</td>
+        <td>{{mss.bells}}</td>
       </tr>
        <tr>
         <td>Le globe lisse et rugueux</td>
-        <td>{{ms.smooth_rough_globe}}</td>
+        <td>{{mss.smooth_rough_globe}}</td>
       </tr>
        <tr>
         <td>Le globe coloré</td>
-        <td>{{ms.colorful_globe}}</td>
+        <td>{{mss.colorful_globe}}</td>
       </tr>
        <tr>
         <td>Le planisphère</td>
-        <td>{{ms.planisphere}}</td>
+        <td>{{mss.planisphere}}</td>
       </tr>
        <tr>
         <td>Les puzzles des continents</td>
-        <td>{{ms.puzzles_continents}}</td>
+        <td>{{mss.puzzles_continents}}</td>
       </tr>
       <tr>
         <td>Les drapeaux</td>
-        <td>{{ms.flags}}</td>
+        <td>{{mss.flags}}</td>
       </tr>
       <tr>
         <td>Les drapeaux : nomenclature classifiée</td>
-        <td>{{ms.flags_1}}</td>
+        <td>{{mss.flags_1}}</td>
       </tr>
       <tr>
         <td>Les contrastes de la terre et de l'eau</td>
-        <td>{{ms.land_water}}</td>
+        <td>{{mss.land_water}}</td>
       </tr>
        <tr>
         <td>La carte de l'Europe</td>
-        <td>{{ms.europe}}</td>
+        <td>{{mss.europe}}</td>
       </tr>
       <tr>
         <td>Les objects qui coulent, qui flottent</td>
-        <td>{{ms.sink_float}}</td>
+        <td>{{mss.sink_float}}</td>
       </tr>
       <tr>
         <td>l'eau qui s'équilibre sur un plan horizontal</td>
-        <td>{{ms.horizontal_water}}</td>
+        <td>{{mss.horizontal_water}}</td>
       </tr>
       <tr>
         <td>La direction du nord</td>
-        <td>{{ms.north}}</td>
+        <td>{{mss.north}}</td>
       </tr>
       <tr>
         <td>L'eau et l'air 1</td>
-        <td>{{ms.water_air_1}}</td>
+        <td>{{mss.water_air_1}}</td>
       </tr>
       <tr>
         <td>L'eau et l'air 2</td>
-        <td>{{ms.water_air_2}}</td>
+        <td>{{mss.water_air_2}}</td>
       </tr>
       <tr>
         <td>L'eau et l'air 3</td>
-        <td>{{ms.water_air_3}}</td>
+        <td>{{mss.water_air_3}}</td>
       </tr>
       <tr>
         <td>L'électricité</td>
-        <td>{{ms.electricity}}</td>
+        <td>{{mss.electricity}}</td>
       </tr>
        <tr>
         <td>Les aimants 1</td>
-        <td>{{ms.magnets_1}}</td>
+        <td>{{mss.magnets_1}}</td>
       </tr>
       <tr>
         <td>Les aimants 2</td>
-        <td>{{ms.magnets_2}}</td>
+        <td>{{mss.magnets_2}}</td>
       </tr>
       <tr>
         <td>L'arche romane</td>
-        <td>{{ms.roman_arch}}</td>
-      </tr>
-      <tr>
-        <td>{{pl.observations}}</td>
+        <td>{{mss.roman_arch}}</td>
       </tr>
    </tbody>
+    <p>{{mss.observations}}</p>
 </table>
 
 </div>
