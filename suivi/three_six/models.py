@@ -1,96 +1,85 @@
 from django.db import models
 
-from students.models import Students
 
-
-class GenericModel(models.Model):
-
-    BOIS = 'BOIS'
-    TERRE = 'TERRE'
-
-    ENVIRONMENT_CHOICES = (
-        (BOIS, 'Bois'),
-        (TERRE, 'Terre'),
-
-    )
-
-    student = models.ForeignKey(Students, on_delete=models.CASCADE)
-
-    class Meta:
-        abstract = True
-
-
-class PracticalLife(GenericModel):
+class PracticalLife(models.Model):
 
     """ EXERCICES PRELIMINAIRES """
 
     title_1 = models.CharField(max_length=100, default='EXERCICES PRELIMINAIRES')
-    move_mood = models.CharField(max_length=250, verbose_name="Se déplacer dans l'ambiance")
-    carry_table = models.CharField(max_length=250, verbose_name="Porter une table seul, à deux")
-    Carry_tray = models.CharField(max_length=250, verbose_name="Porter un plateau, un objet fragile")
-    Carrying_mat = models.CharField(max_length=250, verbose_name="Porter, dérouler et rouler un tapis")
-    open_close_door = models.CharField(max_length=250, verbose_name="Ouvrir et fermer une porte")
-    open_close_window = models.CharField(max_length=250, verbose_name="Ouvrir et fermer une fenêtre, un tiroir")
-    observations_preliminary_exercises = models.TextField(verbose_name="Observations exercices préliminaires ")
+    move_mood = models.CharField(max_length=255, verbose_name="Se déplacer dans l'ambiance")
+    carry_table = models.CharField(max_length=255, verbose_name="Porter une table seul, à deux")
+    Carry_tray = models.CharField(max_length=255, verbose_name="Porter un plateau, un objet fragile")
+    Carrying_mat = models.CharField(max_length=255, verbose_name="Porter, dérouler et rouler un tapis")
+    open_close_door = models.CharField(max_length=255, verbose_name="Ouvrir et fermer une porte")
+    open_close_window = models.CharField(max_length=255, verbose_name="Ouvrir et fermer une fenêtre, un tiroir")
 
     """ SOIN DU MILEU INTERIEUR """
 
-    title_2 = models.CharField(max_length=250, default='SOIN DU MILEU INTERIEUR')
-    squeeze_sponge = models.CharField(max_length=250, verbose_name="Presser une éponge")
-    Screw_bolts = models.CharField(max_length=250, verbose_name="Visser, dévisser des boulons")
-    open_close_padlock = models.CharField(max_length=250, verbose_name="Ouvrir et fermer un cadenas")
-    use_clothes_pegs = models.CharField(max_length=250, verbose_name="Se servir de pinces à linge")
-    open_close_boxes = models.CharField(max_length=250, verbose_name="Ouvrir et fermer des boites")
-    open_close_bottles = models.CharField(max_length=250, verbose_name="Ouvrir et fermer des flacons")
-    fold_fabrics = models.CharField(max_length=250, verbose_name="Plier des étoffes")
-    fold_paper = models.CharField(max_length=250, verbose_name="Plier du papier")
-    cut_paper_scissors = models.CharField(max_length=250, verbose_name="Couper du papier avec des ciseaux")
-    paste_paper = models.CharField(max_length=250, verbose_name="Coller du papier")
-    dust = models.CharField(max_length=250, verbose_name="Epousseter avec un chiffon, un plumeau")
-    sweep = models.CharField(max_length=250, verbose_name="Balayer")
-    brush_carpet = models.CharField(max_length=250, verbose_name="Brosser un tapis")
-    transfer_spoon = models.CharField(max_length=250, verbose_name="Transvaser avec une cuillère")
-    pour_rice = models.CharField(max_length=250, verbose_name="Verser du riz")
-    pour_sand = models.CharField(max_length=250, verbose_name="Verser du sable")
-    pour_water = models.CharField(max_length=250, verbose_name="Verser de l'eau")
-    pour_water_glasses = models.CharField(max_length=250, verbose_name="Verser de l'eau dans des verres")
-    clean_mirror = models.CharField(max_length=250, verbose_name="Nettoyer un miroir")
-    polish_brass = models.CharField(max_length=250, verbose_name="Astiquer les cuivres")
-    take_care_plants = models.CharField(max_length=250, verbose_name="Soigner les plantes")
-    chang_flower_water = models.CharField(max_length=250, verbose_name="Changer l'eau des fleurs")
-    wash_table = models.CharField(max_length=250, verbose_name="Laver la table")
-    wash_clothes = models.CharField(max_length=250, verbose_name="Laver du linge")
-    observations_care_interior = models.TextField(verbose_name="Observations soin du milieu intérieur ")
+    title_2 = models.CharField(max_length=100, default='SOIN DU MILEU INTERIEUR')
+    squeeze_sponge = models.CharField(max_length=255, verbose_name="Presser une éponge")
+    Screw_bolts = models.CharField(max_length=255, verbose_name="Visser, dévisser des boulons")
+    screwdriver = models.CharField(max_length=255, verbose_name="Utiliser un tournevis")
+    open_close_padlock = models.CharField(max_length=255, verbose_name="Ouvrir et fermer un cadenas")
+    use_clothes_pegs = models.CharField(max_length=255, verbose_name="Se servir de pinces à linge")
+    open_close_boxes = models.CharField(max_length=255, verbose_name="Ouvrir et fermer des boites")
+    open_close_bottles = models.CharField(max_length=255, verbose_name="Ouvrir et fermer des flacons")
+    fold_fabrics = models.CharField(max_length=255, verbose_name="Plier des étoffes")
+    fold_paper = models.CharField(max_length=255, verbose_name="Plier du papier")
+    cut_paper_scissors = models.CharField(max_length=255, verbose_name="Couper du papier avec des ciseaux")
+    paste_paper = models.CharField(max_length=255, verbose_name="Coller du papier")
+    dust = models.CharField(max_length=255, verbose_name="Epousseter avec un chiffon, un plumeau")
+    sweep = models.CharField(max_length=255, verbose_name="Balayer")
+    brush_carpet = models.CharField(max_length=255, verbose_name="Brosser un tapis")
+    transfer_spoon = models.CharField(max_length=255, verbose_name="Transvaser avec une cuillère")
+    pour_rice = models.CharField(max_length=255, verbose_name="Verser du riz")
+    pour_sand = models.CharField(max_length=255, verbose_name="Verser du sable")
+    pour_water = models.CharField(max_length=255, verbose_name="Verser de l'eau")
+    pour_water_glasses = models.CharField(max_length=255, verbose_name="Verser de l'eau dans des verres")
+    clean_mirror = models.CharField(max_length=255, verbose_name="Nettoyer un miroir")
+    polish_brass = models.CharField(max_length=255, verbose_name="Astiquer les cuivres")
+    take_care_plants = models.CharField(max_length=255, verbose_name="Soigner les plantes")
+    chang_flower_water = models.CharField(max_length=255, verbose_name="Changer l'eau des fleurs")
+    wash_table = models.CharField(max_length=255, verbose_name="Laver la table")
+    wash_clothes = models.CharField(max_length=255, verbose_name="Laver du linge")
+    stitching = models.CharField(max_length=255, verbose_name="Piquage")
 
     """ SOIN DE LA PERSONNE"""
     title_3 = models.CharField(max_length=100, default='SOIN DE LA PERSONNE')
-    frame_press_studs = models.CharField(max_length=250, verbose_name="Cadre à boutons pressions")
-    frame_big_studs = models.CharField(max_length=250, verbose_name="Cadre à gros boutons")
-    frame_small_studs = models.CharField(max_length=250, verbose_name="Cadre à petits boutons")
-    frame_slide = models.CharField(max_length=250, verbose_name="Cadre à glissière")
-    frame_staple = models.CharField(max_length=250,verbose_name="Cadre à agrafes")
-    frame_loop = models.CharField(max_length=250, verbose_name="Cadre à boucles")
-    frame_safety_pin = models.CharField(max_length=250, verbose_name="Cadre à épingles à nourrice")
-    frame_node = models.CharField(max_length=250, verbose_name="Cadre à noeuds")
-    frame_lacing = models.CharField(max_length=250, verbose_name="Cadre à laçage")
-    wash_hands = models.CharField(max_length=250, verbose_name="Se laver les mains")
-    shine_shoes = models.CharField(max_length=250, verbose_name="Cirer ses chaussures")
-    sew = models.CharField(max_length=250, verbose_name="Coudre")
-    observations_personal_care = models.TextField(verbose_name="Observations soin de la personne")
+    frame_press_studs = models.CharField(max_length=255, verbose_name="Cadre à boutons pressions")
+    frame_big_studs = models.CharField(max_length=255, verbose_name="Cadre à gros boutons")
+    frame_small_studs = models.CharField(max_length=255, verbose_name="Cadre à petits boutons")
+    frame_slide = models.CharField(max_length=255, verbose_name="Cadre à glissière")
+    frame_staple = models.CharField(max_length=255, verbose_name="Cadre à agrafes")
+    frame_loop = models.CharField(max_length=255, verbose_name="Cadre à boucles")
+    frame_safety_pin = models.CharField(max_length=255, verbose_name="Cadre à épingles à nourrice")
+    frame_node = models.CharField(max_length=255, verbose_name="Cadre à noeuds")
+    frame_lacing = models.CharField(max_length=255, verbose_name="Cadre à laçage")
+    wash_hands = models.CharField(max_length=255, verbose_name="Se laver les mains")
+    make_bread = models.CharField(max_length=255, verbose_name="Faire le pain")
+    fresh_fruit = models.CharField(max_length=255, verbose_name="Préparer les fruits frais")
+    shine_shoes = models.CharField(max_length=255, verbose_name="Cirer ses chaussures")
+    sew = models.CharField(max_length=255, verbose_name="Coudre")
 
     """ JEUX COLLECTIFS"""
     title_4 = models.CharField(max_length=100, default='JEUX COLLECTIFS')
-    walk_line = models.CharField(max_length=250, verbose_name="Marcher sur la ligne")
-    lesson_silence = models.CharField(max_length=250, verbose_name="Leçon de silence")
-    observations_collective_games = models.TextField(verbose_name="Observations jeux collectifs")
+    walk_line = models.CharField(max_length=255, verbose_name="Marcher sur la ligne")
+    lesson_silence = models.CharField(max_length=255, verbose_name="Leçon de silence")
+
+    title_5 = models.CharField(max_length=100, default='OBSERVATIONS')
+    observations_1 = models.TextField(verbose_name="Trimestre 1")
+    observations_2 = models.TextField(verbose_name="Trimestre 2")
+    observations_3 = models.TextField(verbose_name="Trimestre 3")
 
     class Meta:
         verbose_name = "Vie Pratique"
         verbose_name_plural = "Vie Pratique"
 
 
-class SensoryMaterial(GenericModel):
+class SensoryMaterial(models.Model):
 
+    """ VISUEL"""
+
+    title_1 = models.CharField(max_length=100, default='VISUEL')
     cylindrical_sockets_1 = models.CharField(max_length=250, verbose_name="Emboitements cylindriques 1")
     cylindrical_sockets_2 = models.CharField(max_length=250, verbose_name="Emboitements cylindriques 2")
     cylindrical_sockets_3 = models.CharField(max_length=250, verbose_name="Emboitements cylindriques 3")
@@ -104,19 +93,6 @@ class SensoryMaterial(GenericModel):
     geometry_tray = models.CharField(max_length=250, verbose_name="Le cabinet de géométrie /plateau")
     geometry_drawers = models.CharField(max_length=250, verbose_name="Le cabinet de géométrie /tiroirs")
     geometry_maps = models.CharField(max_length=250, verbose_name="Le cabinet de géométrie /cartes")
-    smooth_rough = models.CharField(max_length=250, verbose_name="Lisse et rugueux")
-    smooth_rough_table = models.CharField(max_length=250, verbose_name="Lisse et rugueux : les tablettes")
-    fabrics = models.CharField(max_length=250, verbose_name="Les étoffes")
-    geometric_solids = models.CharField(max_length=250, verbose_name="Les solides géométriques")
-    mystery_bag = models.CharField(max_length=250, verbose_name="Le sac à mystères")
-    stereognostic_bag = models.CharField(max_length=250, verbose_name="Les sacs stéréognostiques")
-    seed_sorting = models.CharField(max_length=250, verbose_name="Le tri des graines")
-    baryque_tablets = models.CharField(max_length=250, verbose_name="Les tablettes baryques")
-    noise_boxes = models.CharField(max_length=250, verbose_name="Les boites à bruits")
-    smells = models.CharField(max_length=250, verbose_name="Les odeurs")
-    flavours = models.CharField(max_length=250, verbose_name="Les saveurs")
-    thermal_bottles = models.CharField(max_length=250, verbose_name="Les bouteilles thermiques")
-    thermal_tablets = models.CharField(max_length=250, verbose_name="Les tablettes thermiques")
     constructor_triangles_1 = models.CharField(max_length=250, verbose_name="Les triangles constructeurs 1")
     constructor_triangles_2 = models.CharField(max_length=250, verbose_name="Les triangles constructeurs 2")
     constructor_triangles_3 = models.CharField(max_length=250, verbose_name="Les triangles constructeurs 3")
@@ -125,12 +101,50 @@ class SensoryMaterial(GenericModel):
     constructor_triangles_6 = models.CharField(max_length=250, verbose_name="Les triangles constructeurs 6")
     superimposed_figures = models.CharField(max_length=250, verbose_name="Les figures superposées")
     binomial_cube = models.CharField(max_length=250, verbose_name="Le cube du binôme")
-    trinomial_cube = models.CharField(max_length=250,verbose_name="Le cube du trinôme")
+    trinomial_cube = models.CharField(max_length=250, verbose_name="Le cube du trinôme")
     pythagore_table = models.CharField(max_length=250, verbose_name="La table de Pythagore")
     colored_cylinders = models.CharField(max_length=250, verbose_name="Les cylindres de couleur")
     botanical_tray = models.CharField(max_length=250, verbose_name="Le cabinet de botaniques /plateau")
     botanical_maps = models.CharField(max_length=250, verbose_name="Le cabinet de botaniques /cartes")
+    roman_arch = models.CharField(max_length=250, verbose_name="L'arche romane")
+
+    """ TACTILE"""
+
+    title_2 = models.CharField(max_length=100, default='TACTILE')
+    smooth_rough = models.CharField(max_length=250, verbose_name="Lisse et rugueux")
+    smooth_rough_table = models.CharField(max_length=250, verbose_name="Lisse et rugueux : les tablettes")
+    fabrics = models.CharField(max_length=250, verbose_name="Les étoffes")
+    baryque_tablets = models.CharField(max_length=250, verbose_name="Les tablettes baryques")
+    thermal_bottles = models.CharField(max_length=250, verbose_name="Les bouteilles thermiques")
+    thermal_tablets = models.CharField(max_length=250, verbose_name="Les tablettes thermiques")
+
+    """ STEREOGNOSTIQUE"""
+
+    title_3 = models.CharField(max_length=100, default='STEREOGNOSTIQUE')
+    geometric_solids = models.CharField(max_length=250, verbose_name="Les solides géométriques")
+    mystery_bag = models.CharField(max_length=250, verbose_name="Le sac à mystères")
+    stereognostic_bag = models.CharField(max_length=250, verbose_name="Les sacs stéréognostiques")
+    seed_sorting = models.CharField(max_length=250, verbose_name="Le tri des graines")
+
+    """AUDITIF"""
+
+    title_4 = models.CharField(max_length=100, default='AUDITIF')
+    noise_boxes = models.CharField(max_length=250, verbose_name="Les boites à bruits")
     bells = models.CharField(max_length=250, verbose_name="Les clochettes")
+
+    """OLFACTIF"""
+
+    title_5 = models.CharField(max_length=100, default='OLFACTIF')
+    smells = models.CharField(max_length=250, verbose_name="Les odeurs")
+
+    """GUSTATIF"""
+
+    title_6 = models.CharField(max_length=100, default='GUSTATIF')
+    flavours = models.CharField(max_length=250, verbose_name="Les saveurs")
+
+    """GEOGRAPHIE"""
+
+    title_7 = models.CharField(max_length=100, default='GEOGRAPHIE')
     smooth_rough_globe = models.CharField(max_length=250, verbose_name="Le globe lisse et rugueux")
     colorful_globe = models.CharField(max_length=250, verbose_name="Le globe coloré")
     planisphere = models.CharField(max_length=250, verbose_name="Le planisphère")
@@ -139,7 +153,15 @@ class SensoryMaterial(GenericModel):
     flags_1 = models.CharField(max_length=250, verbose_name="Les drapeaux : nomenclature classifiée")
     land_water = models.CharField(max_length=250, verbose_name="Les contrastes de la terre et de l'eau")
     europe = models.CharField(max_length=250, verbose_name="La carte de l'Europe")
+
+    """ART"""
+
+    title_8 = models.CharField(max_length=100, default='ART')
     art = models.CharField(max_length=250, verbose_name="Introduction à l'art")
+
+    """EXPERIENCES SCIENTIFIQUES"""
+
+    title_9 = models.CharField(max_length=100, default='EXPERIENCES SCIENTIFIQUES')
     sink_float = models.CharField(max_length=250, verbose_name="Les objects qui coulent, qui flottent")
     horizontal_water = models.CharField(max_length=250, verbose_name="l'eau qui s'équilibre sur un plan horizontal")
     north = models.CharField(max_length=250, verbose_name="La direction du nord")
@@ -149,15 +171,18 @@ class SensoryMaterial(GenericModel):
     electricity = models.CharField(max_length=250, verbose_name="L'électricité")
     magnets_1 = models.CharField(max_length=250, verbose_name="Les aimants 1")
     magnets_2 = models.CharField(max_length=250, verbose_name="Les aimants 2")
-    roman_arch = models.CharField(max_length=250, verbose_name="L'arche romane")
-    observations = models.TextField(verbose_name="Observations")
+
+    title_10 = models.CharField(max_length=100, default='OBSERVATIONS')
+    observations_1 = models.TextField(verbose_name="Trimestre 1")
+    observations_2 = models.TextField(verbose_name="Trimestre 2")
+    observations_3 = models.TextField(verbose_name="Trimestre 3")
 
     class Meta:
         verbose_name = "Materiel sensoriel"
         verbose_name_plural = "Materiel sensoriel"
 
 
-class Math(GenericModel):
+class Math(models.Model):
 
     """ GROUPE 1 NUMERATION DE 1 A 10"""
     title_1 = models.CharField(max_length=100, default='GROUPE 1 NUMERATION DE 1 A 10')
@@ -167,7 +192,7 @@ class Math(GenericModel):
     spindles = models.CharField(max_length=250, verbose_name="Les fuseaux")
     token_game = models.CharField(max_length=250, verbose_name="Le jeu des jetons")
     memory_game = models.CharField(max_length=250, verbose_name="Le jeu de mémoire")
-    observations_group_1 = models.TextField(verbose_name="Observations groupe 1 : numérotation 1 a 10")
+
 
     """ GROUPE 2 INTRODUCTION AU SYSTEME DECIMAL ET AUX OPERATIONS"""
 
@@ -184,8 +209,6 @@ class Math(GenericModel):
     stamps_multi = models.CharField(max_length=250, verbose_name="Les timbres : multiplication S/D")
     stamps_div = models.CharField(max_length=250, verbose_name="Les timbres : division S/D")
     points_tables = models.CharField(max_length=250, verbose_name="La table des points")
-    observations_group_2 = models.TextField(
-        verbose_name="Observations groupe 2 : introduction au système décimal et aux opérations")
 
     """ GROUPE 3 NUMERATION DE 11 A L'INFINI """
 
@@ -198,7 +221,6 @@ class Math(GenericModel):
     chain_1000 = models.CharField(max_length=250, verbose_name="La chaîne de 1000")
     chain_square = models.CharField(max_length=250, verbose_name="La chaîne du carré")
     chain_cube = models.CharField(max_length=250, verbose_name="La chaîne du cube")
-    observations_group_3 = models.TextField(verbose_name="Observations groupe 3 : numération de 11 à l'infini")
 
     """ GROUPE 4 11 A 19 ASSOCIATION QUANTITES SYMBOLES"""
 
@@ -214,8 +236,7 @@ class Math(GenericModel):
     memo_multi_table = models.CharField(max_length=250, verbose_name="Tables mémo multiplication 1, 2, 3")
     div_table = models.CharField(max_length=250, verbose_name="Le tableau de la division")
     memo_div_table = models.CharField(max_length=250, verbose_name="Tables mémo division 1, 2")
-    observations_group_4 = models.TextField(
-        verbose_name="Observations groupe 4 : 11 a 19 : association quantités symboles")
+
 
     """ GROUPE 5 LE PASSAGE A L'ABSTRACTION """
 
@@ -231,8 +252,6 @@ class Math(GenericModel):
     large_sous_sd = models.CharField(max_length=250, verbose_name="Grand boulier : soustraction S/D")
     large_multi_sd = models.CharField(max_length=250, verbose_name="Grand boulier : multiplication S/D")
     div_tube = models.CharField(max_length=250, verbose_name="La grande division avec tubes")
-    observations_group_5 = models.TextField(
-        verbose_name="Observations groupe 5 : le passage à l'abstraction")
 
     """ GROUPE 6 LES FRACTIONS """
     title_6 = models.CharField(max_length=100, default="GROUPE 6 LES FRACTIONS")
@@ -240,14 +259,18 @@ class Math(GenericModel):
     div_write = models.CharField(max_length=250, verbose_name="Les écrire")
     find_equivalences = models.CharField(max_length=250, verbose_name="Rechercher les équivalences")
     make_operations = models.CharField(max_length=250, verbose_name="Faire des opérations")
-    observations_group_6 = models.TextField(verbose_name="Observations groupe 6 : les fractions")
+
+    title_7 = models.CharField(max_length=100, default='OBSERVATIONS')
+    observations_1 = models.TextField(verbose_name="Trimestre 1")
+    observations_2 = models.TextField(verbose_name="Trimestre 2")
+    observations_3 = models.TextField(verbose_name="Trimestre 3")
 
     class Meta:
         verbose_name = "Mathématiques"
         verbose_name_plural = "Mathématiques"
 
 
-class Langage(GenericModel):
+class Langage(models.Model):
 
     """ ENRICHISSEMENT DU VOCABULAIRE"""
 
@@ -258,7 +281,6 @@ class Langage(GenericModel):
     farm = models.CharField(max_length=250, verbose_name="La ferme")
     nomenclature_before_read = models.CharField(max_length=250, verbose_name="Nomenclature avant lecture")
     question_game = models.CharField(max_length=250, verbose_name="Le jeu des questions")
-    observations_1 = models.TextField(verbose_name="Observations Enrichissement du vocabulaire")
 
     """ PREPARATION ECRITURE ET LECTURE """
 
@@ -274,7 +296,6 @@ class Langage(GenericModel):
     homophony_covers = models.CharField(max_length=250, verbose_name="Les pochettes d'homophonies")
     img_after_read = models.CharField(max_length=250, verbose_name="Images classifiées après lecture")
     read_different_media = models.CharField(max_length=250, verbose_name="Lire : différents supports")
-    observations_2 = models.TextField(verbose_name="Observations préparation écriture et lecture")
 
     """ LA NATURE DES MOTS """
 
@@ -290,40 +311,53 @@ class Langage(GenericModel):
     adverb = models.CharField(max_length=250, verbose_name="L'adverbe")
     logical_adverb_game = models.CharField(max_length=250, verbose_name="Le jeu de l'adverbe logique")
     orders_123 = models.CharField(max_length=250, verbose_name="Les ordres 1, 2, 3")
-    observations_3 = models.TextField(max_length=250, verbose_name="Observations la nature des mots")
+
+    """ETUDE DE MOTS"""
+    title_4 = models.CharField(max_length=100, default="ANALYSE DE LA LECTURE")
+    singular_plural = models.CharField(max_length=250, verbose_name="Singulier - pluriel")
+    male_female = models.CharField(max_length=250, verbose_name="Masculin - féminin")
+    compound_words = models.CharField(max_length=250, verbose_name="Mots composés")
+    family_words = models.CharField(max_length=250, verbose_name="Famille de mots")
+    prefixes = models.CharField(max_length=250, verbose_name="Préfixes")
+    suffixes = models.CharField(max_length=250, verbose_name="Suffixes")
 
     """ANALYSE DE LA LECTURE"""
 
-    title_4 = models.CharField(max_length=100, default="ANALYSE DE LA LECTURE")
+    title_5 = models.CharField(max_length=100, default="ANALYSE DE LA LECTURE")
     sentence_analysis_1 = models.CharField(max_length=250, verbose_name="Analyse de la phrase, stade 1")
     sentence_analysis_2 = models.CharField(max_length=250, verbose_name="Analyse de la phrase, stade 2")
-    observations_4 = models.TextField(verbose_name="Observations analyse de la lecture")
+
 
     """ MUSIQUE """
 
-    title_5 = models.CharField(max_length=100, default="MUSIQUE")
+    title_6 = models.CharField(max_length=100, default="MUSIQUE")
     name_bells = models.CharField(max_length=250, verbose_name="Le nom des clochettes")
     sharp_flat = models.CharField(max_length=250, verbose_name="Dièse et bémol")
     read_write_music = models.CharField(max_length=250, verbose_name="Lecture et écriture musicale")
     bass_clef = models.CharField(max_length=250, verbose_name="La clé de Fa")
     read_sheet_music = models.CharField(max_length=250, verbose_name="Lecture de partitions")
-    observations_5 = models.TextField(verbose_name="Observations musique")
+
+    title_7 = models.CharField(max_length=100, default='OBSERVATIONS')
+    observations_1 = models.TextField(verbose_name="Trimestre 1")
+    observations_2 = models.TextField(verbose_name="Trimestre 2")
+    observations_3 = models.TextField(verbose_name="Trimestre 3")
 
     class Meta:
         verbose_name = "Langage"
         verbose_name_plural = "Langage"
 
 
-class Letter(GenericModel):
+class Letter(models.Model):
 
     CHOICES = (
         ('Présentée', 'Présentée'),
+        ('Tracée', 'tracée'),
         ('Entendue', "Entendue"),
         ('Lue', 'Lue'),
         ('Ecrite', 'Ecrite')
 
     )
-    letter_a = models.CharField(max_length=100, choices=CHOICES, default="", verbose_name="A")
+    letter_a = models.CharField(max_length=100, choices=CHOICES, verbose_name="A")
     letter_b = models.CharField(max_length=100, choices=CHOICES, verbose_name="B")
     letter_c = models.CharField(max_length=100, choices=CHOICES, verbose_name="C")
     letter_d = models.CharField(max_length=100, choices=CHOICES, verbose_name="D")
@@ -355,14 +389,7 @@ class Letter(GenericModel):
         verbose_name_plural = "Lettres"
 
 
-class Comments(GenericModel):
-    trim_1 = models.TextField(verbose_name="Trimestre 1")
-    trim_2 = models.TextField(verbose_name="Trimestre 2")
-    trim_3 = models.TextField(verbose_name="Trimestre 3")
 
-    class Meta:
-        verbose_name = "Trimestre "
-        verbose_name_plural = "Trimestres"
 
 
 

@@ -8,10 +8,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/
         normalize.min.css">
         <link rel="stylesheet" href="{% static 'authentication/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'authentication/css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'three_six/css/styles.css'%}">
     </head>
     <body>
-        <div class="container-fluid block_page">
+        <div class="container-fluid block_contain" id="main">
             <header >
                 <div class="container">
                     <div class="row">
@@ -27,21 +27,30 @@
             </header>
             <div class="container pt-5">
                 <div class="row">
-                    <div class="col-md-2">
-                         <p><img class="rounded-circle" src="{{student.image.url}}"></p>
+                    <div class="col-md-2 text-center">
+                         <p><img class="rounded-circle" src="{{student.photo.url}}" width="130" height="130"></p>
                         <ul class="navbar">
-                            <li><a href="{% url 'Vie_Pratique' student_id=student.id %}">Vie Pratique</a> </li>
-                            <li><a href="{% url 'Materiel_sensoriel' student_id=student.id %}">Matériel Sensoriel</a> </li>
-                            <li><a href="{% url 'Mathematiques' student_id=student.id %}">Mathématiques</a> </li>
-                            <li><a href="{% url 'Langage' student_id=student.id %}">Langage</a> </li>
-                            <li><a href="{% url 'Observations' student_id=student.id %}">Observations</a> </li>
+                            <li><a href="{% url 'Vie_Pratique_change' student_id=student.id %}">Vie Pratique</a> </li>
+                            <li><a href="{% url 'Materiel_sensoriel_change' student_id=student.id %}">Matériel Sensoriel</a> </li>
+                            <li><a href="{% url 'Mathematiques_change' student_id=student.id %}">Mathématiques</a> </li>
+                            <li><a href="{% url 'Langage_change' student_id=student.id %}">Langage</a> </li>
+
                         </ul>
+                        <h3>Impression</h3>
+                        <ul class="navbar">
+                            <li><a href="{% url 'print_choice' pk=student.id %}">Bilan</a></li>
+                            <li><a href="#">Dossier</a></li>
+                        </ul>
+
                     </div>
 
                     <div class="col-md-10">
                         {% block content %}{% endblock content %}
                     </div>
                 </div>
+            </div>
+            <div id="footer">
+                <h3> Ecole Montessori "La Maison des Enfants"</h3>
             </div>
         </div>
     </body>

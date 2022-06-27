@@ -1,21 +1,30 @@
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Lato:wght@300;400&family=Open+Sans:ital,wght@0,300;1,300&display=swap');
 
-body{
-    margin: 0;
-    display: flex;
-    min-height: 100vh;
+.bloc-contain{
+    font-family: "Lato", Helvetica, sans-serif
+
 }
 
-.site-header {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: 5px;
-}
-.block_page{
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
+
+
+h1{
+    font-size : clamp(1rem, 4vw, 5rem);
 }
 
+h2{
+    font-size : clamp(0.5rem, 3vw, 4rem);
+}
+
+<style>
+    @page {
+        size: letter portrait;
+        @frame content_frame {
+            left: 50pt;
+            width: 512pt;
+            top: 50pt;
+            height: 692pt;
+            -pdf-frame-border: 1;    /* for debugging the layout */
+        }
+    }
+</style>

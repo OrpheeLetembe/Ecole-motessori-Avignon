@@ -1,22 +1,30 @@
+
 from django.db import models
-
 from PIL import Image
+from model_utils import FieldTracker
 
+from three_six.models import PracticalLife, SensoryMaterial, Math, Langage, Letter
 from ambiance.models import Ambiance
 
 
 class Students(models.Model):
 
-    image = models.ImageField(null=True, blank=True)
+    photo = models.ImageField(null=True, blank=True)
     firstname = models.CharField(max_length=25)
     lastname = models.CharField(max_length=25)
     date_of_birth = models.DateField()
+    profil = models.TextField()
     ambiance = models.ForeignKey(Ambiance, on_delete=models.CASCADE)
-    observations_trim1 = models.TextField(null=True, blank=True)
-    observations_trim2 = models.TextField(null=True, blank=True)
-    observations_trim3 = models.TextField(null=True, blank=True)
+    pratique_life = models.ForeignKey(PracticalLife, on_delete=models.CASCADE)
+    sensorial_material = models.ForeignKey(SensoryMaterial, on_delete=models.CASCADE)
+    mathe = models.ForeignKey(Math, on_delete=models.CASCADE)
+    langage = models.ForeignKey(Langage, on_delete=models.CASCADE)
+    letter = models.ForeignKey(Letter, on_delete=models.CASCADE)
+
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+
+    tracker = FieldTracker()
 
     class Meta:
         verbose_name = "Student"
@@ -25,9 +33,9 @@ class Students(models.Model):
     IMAGE_MAX_SIZE = (100, 100)
 
     def resize_image(self):
-        image = Image.open(self.image)
+        image = Image.open(self.photo)
         image.thumbnail(self.IMAGE_MAX_SIZE)
-        image.save(self.image.path)
+        image.save(self.photo.path)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

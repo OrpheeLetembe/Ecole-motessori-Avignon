@@ -9,10 +9,10 @@
         <div class="col-md-">
             <div class="activiy_form">
                 <form method='post'> {% csrf_token %}
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-responsive{-sm|-md|-lg|-xl}">
                         {{langage_form.as_table}}
                     </table>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-responsive{-sm|-md|-lg|-xl}">
                         {{letter_form.as_table}}
                     </table>
                     <button class="btn btn-outline-dark" type='submit' >Enregistrer</button>

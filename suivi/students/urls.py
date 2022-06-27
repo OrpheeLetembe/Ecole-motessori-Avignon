@@ -1,6 +1,5 @@
 from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
+
 
 from . import views
 
@@ -9,7 +8,9 @@ urlpatterns = [
     path("child/all", views.students_list, name='all_child'),
     path("student_change/<int:student_id>", views.update_student, name='student_change'),
 
+    path("print_choice/<pk>", views.student_pdf_view, name='print_choice'),
+    #path("print/<pk>", views.student_pdf_view, name='print'),
+
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

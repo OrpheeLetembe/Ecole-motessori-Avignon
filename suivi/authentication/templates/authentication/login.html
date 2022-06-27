@@ -6,7 +6,7 @@
 
 <div class="row forms">
     <div class="col-md-6">
-        <h2>Enregistrez-vous</h2>
+
         <div class="signup_btn">
             <form  action="{% url 'signup' %}" method='get' >
             {% csrf_token %}
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="col-md-6 login">
-        <h2>Connectez-vous</h2>
+
         <p>{{ message}}</p>
         <div class="login_form">
             <form method='post'> {% csrf_token %}
