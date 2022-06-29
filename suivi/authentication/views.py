@@ -5,10 +5,11 @@ from . import forms
 from ambiance.models import Ambiance
 
 
-def login_page(request):
+def login_page(request, ambiance_id):
     """his function allows a registered user to log in.
     After verifying his credentials, the user is redirected to the feed page if they are correct.
     """
+    ambiance = Ambiance.objects.get(id=ambiance_id)
     form = forms.LoginForm()
     message = ""
     if request.method == "POST":
@@ -20,29 +21,38 @@ def login_page(request):
             )
             if user is not None:
                 login(request, user)
-                return redirect('all_child')
+                return redirect('all_child', ambiance_id=ambiance.id)
             else:
                 message = "Identifiants invalides."
-    return render(request, "authentication/login.html", context={"form": form, "message": message})
+    context = {
+        'form': form,
+         'message': message,
+        'ambiance': ambiance
+    }
+    return render(request, "authentication/login.html", context=context)
 
 
-def signup_page(request):
+def signup_page(request, ambiance_id):
     """This function allows the registration of a new user.
     After entering his credentials, the user is redirected to the feed page.
     """
+    ambiance = Ambiance.objects.get(id=ambiance_id)
     form = forms.SignupForm()
     if request.method == "POST":
         form = forms.SignupForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            ambiance_id = request.POST['ambiance']
-            ambiance = Ambiance.objects.get(id=ambiance_id)
             user.ambiance = ambiance
             user.save()
             login(request, user)
-            return redirect('all_child')
+            return redirect('all_child', ambiance_id=ambiance.id)
 
-    return render(request, "authentication/signup.html", context={"form": form})
+    context = {
+        'ambiance': ambiance,
+        'form': form,
+    }
+
+    return render(request, "authentication/signup.html", context=context)
 
 
 def logout_page(request):
@@ -50,6 +60,6 @@ def logout_page(request):
     After disconnection, the user is redirected to the login page
     """
     logout(request)
-    return redirect('login')
+    return redirect('ambiance')
 
 

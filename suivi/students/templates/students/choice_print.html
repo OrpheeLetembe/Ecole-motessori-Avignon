@@ -1,5 +1,5 @@
 {% extends "authentication/base.html" %}
-{% block title %}Impression{% endblock %}
+{% block title %}Impression-{student}}{% endblock %}
 {% block content %}
 <div class="row" xmlns="http://www.w3.org/1999/html">
             <div class="col-md-2">{{student}}</div>
@@ -15,7 +15,7 @@
                 </form>
             </div>
             <div class="col-md-2">
-                <a href="{% url 'all_child' %}">Retour</a>
+                <a href="{% url 'Vie_Pratique_change' student_id=student.id %}">Retour</a>
             </div>
 
         </div>

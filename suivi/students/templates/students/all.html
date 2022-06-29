@@ -1,12 +1,12 @@
 {% extends "authentication/base.html" %}
 
 
-{% block title %}{{ambiance.name}} {{ambiance.year}}{% endblock %}
+{% block title %}{{ambiance}}{% endblock %}
 
 {% block content %}
 
 <div>
-    <h3>{{user.ambiance}}</h3> <a href="{% url 'add_child' %}">Ajouter un enfant</a> <br>
+    <h3>{{ambiance}}</h3> <a href="{% url 'add_child' ambiance_id=ambiance.id %}">Ajouter un enfant</a> <br>
     <a href="{% url 'logout' %}">Se déconnecter</a>
 </div>
 

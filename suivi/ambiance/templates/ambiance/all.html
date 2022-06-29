@@ -1,0 +1,35 @@
+{% extends "authentication/base.html" %}
+
+
+{% block title %}Ambiances{% endblock %}
+
+{% block content %}
+<h2 class="text-center">La Maison des Enfants</h2>
+<div class="row">
+    <div class="col-md-3"> </div>
+    <div class="col-md-8 d-flex flex-wrap justify-content-evenly">
+            {% for ambiance in ambiances %}
+            <div class="p-3 mb-1">
+             <table class="table table-bordered table-hover">
+          <thead>
+          </thead>
+          <tbody>
+            <tr>
+                <td>
+                    <a href="{% url 'login' ambiance_id=ambiance.id %}"> {{ambiance}}</a>
+                </td>
+
+            </tr>
+            </tbody>
+             </table>
+                </div>
+
+        {% endfor %}
+
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
+
+
+{% endblock content %}

@@ -7,23 +7,26 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
+from ambiance.models import Ambiance
 from three_six.models import PracticalLife, SensoryMaterial, Math, Langage, Letter
 from . import forms
 from .models import Students
 
 
 @login_required
-def add_student(request):
+def add_student(request, ambiance_id):
     """
     This function allows the creation of a new child object,
     as well as the creation of the practical life, sensory material,
     mathematics, language and letter objects associated with it
     """
+    ambiance = Ambiance.objects.get(id=ambiance_id)
     form = forms.StudentForm()
     if request.method == 'POST':
         form = forms.StudentForm(request.POST, request.FILES)
         if form.is_valid():
             student = form.save(commit=False)
+            student.ambiance = ambiance
             pratique_life_create = PracticalLife.objects.create()
             sensorial_material_create = SensoryMaterial.objects.create()
             mathe_create = Math.objects.create()
@@ -35,16 +38,22 @@ def add_student(request):
             student.langage = langage_create
             student.letter = letter_create
             student.save()
-            return redirect('all_child')
+            return redirect('all_child', ambiance_id=ambiance.id)
 
-    return render(request, 'students/add_child.html', context={'form': form})
+    context = {
+        'form': form,
+        'ambiance': ambiance
+    }
+
+    return render(request, 'students/add_child.html', context=context)
 
 
 @login_required
-def students_list(request):
+def students_list(request, ambiance_id):
     """ This function is used to obtain the list of children in the same environment as the connected user"""
-    ambiance = request.user.ambiance
+    ambiance = Ambiance.objects.get(id=ambiance_id)
     students = Students.objects.filter(ambiance=ambiance).order_by('lastname')
+
     context = {
         'ambiance': ambiance,
         'students': students,
@@ -65,7 +74,7 @@ def update_student(request, student_id):
             form.save()
             if student.tracker.has_changed('photo'):
                 os.remove(photo)
-            return redirect('all_child')
+            return redirect('all_child', ambiance_id=student.ambiance.id)
     else:
         form = forms.StudentForm(instance=student)
     context = {
@@ -125,7 +134,7 @@ def student_pdf_view(request, pk):
             }
             response = HttpResponse(content_type='application/pdf')
             filename = "Bilan_{}_{}".format(student, student.ambiance)
-            response['Content-Disposition'] = 'filename=Bilan_%s.pdf' % filename
+            response['Content-Disposition'] = 'attachment; filename=Bilan_%s.pdf' % filename
             template = get_template(template_path)
             html = template.render(context)
 

@@ -14,29 +14,68 @@ body, html{
     padding:0;
     height:100%;
 }
+.header {
+    display: flex;
+	justify-content: space-between;
+	align-items: center;
+    background-color: #FFFFFF ;
+	position: fixed;
+	width: 80%;
+	height: 100px;
+	top: 0px;
+	z-index: 4;
+	border: black 1px solid;
+}
 
-#main{
-    max-width: 1280px;
-    min-height: 100%;
-    padding-bottom: 100px;
-    position:relative;
+
+
+.block-content{
+    width: 80%;
+    position: relative;
+   /* background-color: #2C3E50 ;*/
+    margin: auto;
+    min-height: 80%;
+    padding-top: 100px;
 
 
 }
+
+
 
 .navbar li {
       list-style: none;
+      text-align: center;
 }
 
-#footer{
-    background:#ccc;
-    position:absolute;
-    bottom: 0;
-    width: 100%;
-    height: 40px;
-    text-align: center;
-    border: solid black 1px;
 
+.sub-domain, .sub-printed {
+    display: none;
+}
+
+.menu-domain:hover .sub-domain {
+	display: inline;
+}
+
+.printed:hover .sub-printed {
+	display: inline;
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+
+  margin-top: 10 px;
+
+  /*bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: red;
+  color: white;*/
+  text-align: center;
+}
+
+.footer-content{
+     border: black 1px solid;
 
 }
 h1{

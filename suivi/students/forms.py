@@ -10,14 +10,14 @@ class StudentForm(forms.ModelForm):
     lastname = forms.CharField(label="Nom", widget=forms.TextInput(attrs={"class": "form-control"}))
     date_of_birth = forms.DateField(
         label="Date de naissance", input_formats=['%d/%m/%Y'])
-    ambiance = forms.ModelChoiceField(label="Ambiance", queryset=Ambiance.objects.all(), empty_label="-----",
-                                      widget=forms.Select(attrs={'class': 'form-control'}))
+    #ambiance = forms.ModelChoiceField(label="Ambiance", queryset=Ambiance.objects.all(), empty_label="-----",
+                                     # widget=forms.Select(attrs={'class': 'form-control'}))
     profil = forms.CharField(
         label="Profil", required=False, widget=forms.Textarea(attrs={"rows": 8, "cols": 81, 'class': 'form-control'}))
 
     class Meta:
         model = Students
-        fields = ['photo', 'firstname', 'lastname', 'date_of_birth', 'ambiance', 'profil']
+        fields = ['photo', 'firstname', 'lastname', 'date_of_birth', 'profil']
 
 
 class PrintFrom(forms.Form):

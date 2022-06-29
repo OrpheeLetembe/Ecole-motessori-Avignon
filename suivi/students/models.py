@@ -4,6 +4,7 @@ from PIL import Image
 from model_utils import FieldTracker
 
 from three_six.models import PracticalLife, SensoryMaterial, Math, Langage, Letter
+
 from ambiance.models import Ambiance
 
 
