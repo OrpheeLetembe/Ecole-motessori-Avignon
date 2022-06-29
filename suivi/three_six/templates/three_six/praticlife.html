@@ -4,16 +4,17 @@
 
 {% block content %}
 <h1>VIE PRATIQUE</h1>
- <a href="{% url 'Vie_Pratique_change' student_id=pls.student.id %}">Modifier</a>
-    <div class="big_table">
+
 
     <h2>Exercices préliminaires</h2>
+      <p><b>Trimestre 1</b> <br>{{pls.observations_1}}</p>
+      <p><b>Trimestre 2</b> <br>{{pls.observations_2}}</p>
+      <p><b>Trimestre 3</b> <br>{{pls.observations_3}}</p>
 
     <table class="table table-bordered">
       <thead>
         <tr>
           <th scope="col">Activités</th>
-          <th scope="col">Statut</th>
           <th scope="col">Statut</th>
         </tr>
       </thead>
@@ -44,11 +45,8 @@
           <td>{{pls.open_close_window}}</td>
         </tr>
      </tbody>
-      <p>{{pls.observations_preliminary_exercises}}</p>
-
     </table>
     <h2>Soin du milieu intérieur</h2>
-
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -64,6 +62,10 @@
         <tr>
           <td>Visser, dévisser des boulons</td>
           <td>{{pls.Screw_bolts}}</td>
+        </tr>
+        <tr>
+          <td>Utiliser un tournevis</td>
+          <td>{{pls.screwdriver}}</td>
         </tr>
         <tr>
           <td>Ouvrir et fermer un cadenas</td>
@@ -153,8 +155,13 @@
           <td>Laver du linge</td>
           <td>{{pls.wash_clothes}}</td>
         </tr>
+      <tr>
+          <td>Piquage</td>
+          <td>{{pls.stitching}}</td>
+        </tr>
+
      </tbody>
-      <p>{{pls.observations_care_interior}}</p>
+
   </table>
      <h2>Soin de la personne</h2>
 
@@ -206,6 +213,15 @@
           <td>Se laver les mains</td>
           <td>{{pls.wash_hands}}</td>
         </tr>
+         <tr>
+          <td>Faire le pain</td>
+          <td>{{pls.make_bread}}</td>
+        </tr>
+        <tr>
+          <td>Préparer les fruits frais</td>
+          <td>{{pls.fresh_fruit}}</td>
+        </tr>
+
         <tr>
           <td>Cirer ses chaussures</td>
           <td>{{pls.shine_shoes}}</td>
@@ -215,7 +231,6 @@
           <td>{{pls.sew}}</td>
         </tr>
      </tbody>
-      <p>{{pls.observations_personal_care}}</p>
   </table>
      <h2>Jeux collectifs</h2>
 
@@ -236,11 +251,7 @@
           <td>{{pls.lesson_silence}}</td>
         </tr>
      </tbody>
-      <p>{{pls.observations_collective_games}}</p>
   </table>
-
-
-
   </div>
 
 

@@ -38,7 +38,7 @@
                                 <li class="printed"><a href="#"><b>Imprimer</b></a>
                                     <ul class="sub-printed">
                                         <li><a href="{% url 'print_choice' pk=student.id %}">Bilan</a></li>
-                                        <li><a href="#">Dossier</a></li>
+                                        <li><a href="{% url 'print' pk=student.id %}">Dossier</a></li>
                                     </ul>
                                 </li>
                         </ul>

@@ -4,14 +4,16 @@
 
 {% block content %}
 <h1>MATERIEL SENSORIEL</h1>
-<a href="{% url 'Materiel_sensoriel_change' student_id=mss.student.id %}">Modifier</a>
-<div class="big_table">
+<p><b>Trimestre 1</b> <br>{{mss.observations_1}}</p>
+<p><b>Trimestre 2</b> <br>{{mss.observations_2}}</p>
+<p><b>Trimestre 3</b> <br>{{mss.observations_3}}</p>
 
-  <table class="table table-bordered">
+<h2>Visuel</h2>
+  <table class="table">
     <thead>
       <tr>
-        <th scope="col">Activités</th>
-        <th scope="col">Statut</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -72,58 +74,6 @@
         <td>{{mss.geometry_maps}}</td>
       </tr>
       <tr>
-        <td>Lisse et rugueux</td>
-        <td>{{mss.smooth_rough}}</td>
-      </tr>
-      <tr>
-        <td>Lisse et rugueux : les tablettes</td>
-        <td>{{mss.smooth_rough_table}}</td>
-      </tr>
-      <tr>
-        <td>Les étoffes</td>
-        <td>{{mss.fabrics}}</td>
-      </tr>
-      <tr>
-        <td>Les solides géométriques</td>
-        <td>{{mss.geometric_solids}}</td>
-      </tr>
-      <tr>
-        <td>Le sac à mystères</td>
-        <td>{{mss.mystery_bag}}</td>
-      </tr>
-      <tr>
-        <td>Les sacs stéréognostiques</td>
-        <td>{{mss.stereognostic_bag}}</td>
-      </tr>
-      <tr>
-        <td>Le tri des graines</td>
-        <td>{{mss.seed_sorting}}</td>
-      </tr>
-      <tr>
-        <td>Les tablettes baryques</td>
-        <td>{{mss.baryque_tablets}}</td>
-      </tr>
-      <tr>
-        <td>Les boites à bruits</td>
-        <td>{{mss.noise_boxes}}</td>
-      </tr>
-      <tr>
-        <td>Les odeurs</td>
-        <td>{{mss.smells}}</td>
-      </tr>
-      <tr>
-        <td>Les saveurs</td>
-        <td>{{mss.flavours}}</td>
-      </tr>
-      <tr>
-        <td>Les bouteilles thermiques</td>
-        <td>{{mss.thermal_bottles}}</td>
-      </tr>
-      <tr>
-        <td>Les tablettes thermiques</td>
-        <td>{{mss.thermal_tablets}}</td>
-      </tr>
-      <tr>
         <td>Les triangles constructeurs 1</td>
         <td>{{mss.constructor_triangles_1}}</td>
       </tr>
@@ -176,10 +126,135 @@
         <td>{{mss.botanical_maps}}</td>
       </tr>
        <tr>
+        <td>L'arche romane</td>
+        <td>{{mss.roman_arch}}</td>
+      </tr>
+   </tbody>
+</table>
+<h2>Tactile</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Lisse et rugueux</td>
+        <td>{{mss.smooth_rough}}</td>
+      </tr>
+      <tr>
+        <td>Lisse et rugueux : les tablettes</td>
+        <td>{{mss.smooth_rough_table}}</td>
+      </tr>
+      <tr>
+        <td>Les étoffes</td>
+        <td>{{mss.fabrics}}</td>
+      </tr>
+     <tr>
+        <td>Les tablettes baryques</td>
+        <td>{{mss.baryque_tablets}}</td>
+      </tr>
+    <tr>
+        <td>Les bouteilles thermiques</td>
+        <td>{{mss.thermal_bottles}}</td>
+      </tr>
+      <tr>
+        <td>Les tablettes thermiques</td>
+        <td>{{mss.thermal_tablets}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+<h2>Stéréognostique</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Les solides géométriques</td>
+        <td>{{mss.geometric_solids}}</td>
+      </tr>
+      <tr>
+        <td>Le sac à mystères</td>
+        <td>{{mss.mystery_bag}}</td>
+      </tr>
+      <tr>
+        <td>Les sacs stéréognostiques</td>
+        <td>{{mss.stereognostic_bag}}</td>
+      </tr>
+      <tr>
+        <td>Le tri des graines</td>
+        <td>{{mss.seed_sorting}}</td>
+      </tr>
+      <tr>
+    </tbody>
+  </table>
+<h2>Auditif</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr>
+        <td>Les boites à bruits</td>
+        <td>{{mss.noise_boxes}}</td>
+      </tr>
+    <tr>
         <td>Les clochettes</td>
         <td>{{mss.bells}}</td>
       </tr>
-       <tr>
+
+    </tbody>
+  </table>
+<h2>Olfactif</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Les odeurs</td>
+        <td>{{mss.smells}}</td>
+      </tr>
+    </tbody>
+  </table>
+<h2>Gustatif</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Les saveurs</td>
+        <td>{{mss.flavours}}</td>
+      </tr>
+    </tbody>
+  </table>
+<h2>Géographie</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
         <td>Le globe lisse et rugueux</td>
         <td>{{mss.smooth_rough_globe}}</td>
       </tr>
@@ -211,6 +286,17 @@
         <td>La carte de l'Europe</td>
         <td>{{mss.europe}}</td>
       </tr>
+    </tbody>
+  </table>
+<h2>Expériences scientifiques</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
       <tr>
         <td>Les objects qui coulent, qui flottent</td>
         <td>{{mss.sink_float}}</td>
@@ -248,13 +334,7 @@
         <td>{{mss.magnets_2}}</td>
       </tr>
       <tr>
-        <td>L'arche romane</td>
-        <td>{{mss.roman_arch}}</td>
-      </tr>
-   </tbody>
-    <p>{{mss.observations}}</p>
-</table>
-
-</div>
+    </tbody>
+  </table>
 
 {% endblock content %}

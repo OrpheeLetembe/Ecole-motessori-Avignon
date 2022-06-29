@@ -1,4 +1,5 @@
 from django.db import models
+from multiselectfield import MultiSelectField
 
 
 class PracticalLife(models.Model):
@@ -86,7 +87,7 @@ class SensoryMaterial(models.Model):
     cylindrical_sockets_4 = models.CharField(max_length=250, verbose_name="Emboitements cylindriques 4")
     pink_tower = models.CharField(max_length=250, verbose_name="La tour rose")
     brown_staircase = models.CharField(max_length=250, verbose_name="L'escalier marron")
-    red_bars = models.CharField(max_length=250,verbose_name="Les barres rouges")
+    red_bars = models.CharField(max_length=250, verbose_name="Les barres rouges")
     color_table_1 = models.CharField(max_length=250, verbose_name="Les tables des couleurs 1")
     color_table_2 = models.CharField(max_length=250, verbose_name="Les tables des couleurs 2")
     color_table_3 = models.CharField(max_length=250, verbose_name="Les tables des couleurs 3")
@@ -313,7 +314,7 @@ class Langage(models.Model):
     orders_123 = models.CharField(max_length=250, verbose_name="Les ordres 1, 2, 3")
 
     """ETUDE DE MOTS"""
-    title_4 = models.CharField(max_length=100, default="ANALYSE DE LA LECTURE")
+    title_4 = models.CharField(max_length=100, default="ETUDE DE MOT")
     singular_plural = models.CharField(max_length=250, verbose_name="Singulier - pluriel")
     male_female = models.CharField(max_length=250, verbose_name="Masculin - féminin")
     compound_words = models.CharField(max_length=250, verbose_name="Mots composés")
@@ -326,7 +327,6 @@ class Langage(models.Model):
     title_5 = models.CharField(max_length=100, default="ANALYSE DE LA LECTURE")
     sentence_analysis_1 = models.CharField(max_length=250, verbose_name="Analyse de la phrase, stade 1")
     sentence_analysis_2 = models.CharField(max_length=250, verbose_name="Analyse de la phrase, stade 2")
-
 
     """ MUSIQUE """
 
@@ -350,39 +350,41 @@ class Langage(models.Model):
 class Letter(models.Model):
 
     CHOICES = (
-        ('Présentée', 'Présentée'),
-        ('Tracée', 'tracée'),
-        ('Entendue', "Entendue"),
-        ('Lue', 'Lue'),
-        ('Ecrite', 'Ecrite')
+        ('presented', 'Présentée'),
+        ('traced', 'tracée'),
+        ('heard', "Entendue"),
+        ('read', 'Lue'),
+        ('written', 'Ecrite')
 
     )
-    letter_a = models.CharField(max_length=100, choices=CHOICES, verbose_name="A")
-    letter_b = models.CharField(max_length=100, choices=CHOICES, verbose_name="B")
-    letter_c = models.CharField(max_length=100, choices=CHOICES, verbose_name="C")
-    letter_d = models.CharField(max_length=100, choices=CHOICES, verbose_name="D")
-    letter_e = models.CharField(max_length=100, choices=CHOICES, verbose_name="E")
-    letter_f = models.CharField(max_length=100, choices=CHOICES, verbose_name="F")
-    letter_g = models.CharField(max_length=100, choices=CHOICES, verbose_name="G")
-    letter_h = models.CharField(max_length=100, choices=CHOICES, verbose_name="H")
-    letter_i = models.CharField(max_length=100, choices=CHOICES, verbose_name="I")
-    letter_j = models.CharField(max_length=100, choices=CHOICES, verbose_name="J")
-    letter_k = models.CharField(max_length=100, choices=CHOICES, verbose_name="K")
-    letter_l = models.CharField(max_length=100, choices=CHOICES, verbose_name="L")
-    letter_m = models.CharField(max_length=100, choices=CHOICES, verbose_name="M")
-    letter_n = models.CharField(max_length=100, choices=CHOICES, verbose_name="N")
-    letter_o = models.CharField(max_length=100, choices=CHOICES, verbose_name="O")
-    letter_p = models.CharField(max_length=100, choices=CHOICES, verbose_name="P")
-    letter_q = models.CharField(max_length=100, choices=CHOICES, verbose_name="Q")
-    letter_r = models.CharField(max_length=100, choices=CHOICES, verbose_name="R")
-    letter_s = models.CharField(max_length=100, choices=CHOICES, verbose_name="S")
-    letter_t = models.CharField(max_length=100, choices=CHOICES, verbose_name="T")
-    letter_u = models.CharField(max_length=100, choices=CHOICES, verbose_name="U")
-    letter_v = models.CharField(max_length=100, choices=CHOICES, verbose_name="V")
-    letter_w = models.CharField(max_length=100, choices=CHOICES, verbose_name="W")
-    letter_x = models.CharField(max_length=100, choices=CHOICES, verbose_name="X")
-    letter_y = models.CharField(max_length=100, choices=CHOICES, verbose_name="Y")
-    letter_z = models.CharField(max_length=100, choices=CHOICES, verbose_name="Z")
+
+    letter_a = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="A")
+   # letter_a = models.CharField(max_length=100, choices=CHOICES, verbose_name="A")
+    letter_b = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="B")
+    letter_c = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="C")
+    letter_d = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="D")
+    letter_e = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="E")
+    letter_f = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="F")
+    letter_g = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="G")
+    letter_h = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="H")
+    letter_i = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="I")
+    letter_j = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="J")
+    letter_k = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="K")
+    letter_l = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="L")
+    letter_m = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="M")
+    letter_n = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="N")
+    letter_o = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="O")
+    letter_p = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="P")
+    letter_q = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="Q")
+    letter_r = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="R")
+    letter_s = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="S")
+    letter_t = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="T")
+    letter_u = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="U")
+    letter_v = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="V")
+    letter_w = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="W")
+    letter_x = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="X")
+    letter_y = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="Y")
+    letter_z = MultiSelectField(choices=CHOICES, blank=True, min_choices=0, verbose_name="Z")
 
     class Meta:
         verbose_name = "Lettre"

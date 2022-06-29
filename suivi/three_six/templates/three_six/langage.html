@@ -4,15 +4,17 @@
 
 {% block content %}
 <h1>LANGAGE</h1>
-<a href="{% url 'Langage_change' student_id=lang.student.id %}">Modifier</a>
+    <p><b>Trimestre 1</b> <br>{{lang.observations_1}}</p>
+    <p><b>Trimestre 2</b> <br>{{lang.observations_2}}</p>
+    <p><b>Trimestre 3</b> <br>{{lang.observations_3}}</p>
 
 <div class="big_table">
     <h2>Enrichissement du vocabulaire</h2>
-    <table class="table table-bordered">
+    <table class="table">
       <thead>
         <tr>
-          <th scope="col">Activités</th>
-          <th scope="col">Statut</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -41,14 +43,13 @@
           <td>{{lang.question_game}}</td>
         </tr>
       </tbody>
-      <p>{{lang.observations_1}}</p>
     </table>
   <h2>Préparation écriture et lecture</h2>
-    <table class="table table-bordered">
+    <table class="table">
       <thead>
         <tr>
-          <th scope="col">Activités</th>
-          <th scope="col">Statut</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -97,15 +98,14 @@
           <td>{{lang.read_different_media}}</td>
         </tr>
       </tbody>
-      <p>{{lang.observations_2}}</p>
     </table>
   </table>
   <h2>La nature des mots</h2>
-    <table class="table table-bordered">
+    <table class="table">
       <thead>
         <tr>
-          <th scope="col">Activités</th>
-          <th scope="col">Statut</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -154,14 +154,48 @@
           <td>{{lang.orders_123}}</td>
         </tr>
       </tbody>
-      <p>{{lang.observations_3}}</p>
     </table>
-  <h2>Analyse de la lecture</h2>
-    <table class="table table-bordered">
+    <h2>Etude de mots</h2>
+    <table class="table">
       <thead>
         <tr>
-          <th scope="col">Activités</th>
-          <th scope="col">Statut</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Singulier - pluriel</td>
+          <td>{{lang.singular_plural}}</td>
+        </tr>
+      <tr>
+          <td>Masculin - féminin</td>
+          <td>{{lang.male_female}}</td>
+        </tr>
+      <tr>
+          <td>Mots composés</td>
+          <td>{{lang.compound_words}}</td>
+        </tr>
+      <tr>
+          <td>Famille de mots</td>
+          <td>{{lang.family_words}}</td>
+        </tr>
+      <tr>
+          <td>Préfixes</td>
+          <td>{{lang.prefixes}}</td>
+        </tr>
+      <tr>
+          <td>Suffixes</td>
+          <td>{{lang.suffixes}}</td>
+        </tr>
+      </tbody>
+    </table>
+  <h2>Analyse de la lecture</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -174,14 +208,14 @@
           <td>{{lang.sentence_analysis_2}}</td>
         </tr>
       </tbody>
-      <p>{{lang.observations_4}}</p>
+
     </table>
   <h2>Musique</h2>
-    <table class="table table-bordered">
+    <table class="table">
       <thead>
         <tr>
-          <th scope="col">Activités</th>
-          <th scope="col">Statut</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -206,14 +240,14 @@
           <td>{{lang.read_sheet_music}}</td>
         </tr>
       </tbody>
-      <p>{{lang.observations_5}}</p>
+
     </table>
   <h2>Lettres</h2>
-    <table class="table table-bordered">
+    <table class="table">
       <thead>
         <tr>
-          <th scope="col">Activités</th>
-          <th scope="col">Statut</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>

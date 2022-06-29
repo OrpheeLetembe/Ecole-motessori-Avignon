@@ -6,13 +6,8 @@
 {% block content %}
 
 <div>
-    <h3>{{ambiance}}</h3>
-    <ul>
-        <li><a href="{% url 'add_child' ambiance_id=ambiance.id %}">Ajouter un nouvel enfant</a> </li>
-        <li><a href="{% url 'ambiance_add_child' ambiance_id=ambiance.id %}">Ajouter un enfant</a></li>
-        <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
-    </ul>
-
+    <h3>{{ambiance}}</h3> <br>
+    <a href="javascript:history.back()">Retour</a>
 </div>
 
 <div class="row">
@@ -27,15 +22,12 @@
           <tbody>
             <tr>
                 <td>
-                    <a href="{% url 'Vie_Pratique_change' student_id=student.id %}">
                         <p><img class="rounded-circle" src="{{student.photo.url}}" width="100" height="100"></p>
-
-                    </a>
                 </td>
 
                 <td>
                     {{student.firstname}} <br> {{student.lastname}} <br>
-                    <a href="{% url 'student_change' student_id=student.id %}">Modifier</a>
+                    <a href="{% url 'ambiance_add_old' ambiance_id=ambiance.id student_id=student.id %}">Ajouter</a>
                 </td>
             </tr>
             </tbody>

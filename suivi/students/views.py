@@ -49,7 +49,7 @@ def add_student(request, ambiance_id):
 
 
 @login_required
-def students_list(request, ambiance_id):
+def students_ambiance_list(request, ambiance_id):
     """ This function is used to obtain the list of children in the same environment as the connected user"""
     ambiance = Ambiance.objects.get(id=ambiance_id)
     students = Students.objects.filter(ambiance=ambiance).order_by('lastname')
@@ -60,6 +60,17 @@ def students_list(request, ambiance_id):
         'user': request.user,
     }
     return render(request, 'students/all.html', context=context)
+
+
+@login_required
+def student_all(request, ambiance_id):
+    students = Students.objects.all()
+    ambiance = Ambiance.objects.get(id=ambiance_id)
+    context = {
+        'students': students,
+        'ambiance': ambiance
+    }
+    return render(request, 'students/student.html', context=context)
 
 
 @login_required
@@ -105,8 +116,8 @@ def trim_choice(data, activity):
 
 
 @login_required
-def student_pdf_view(request, pk):
-    """ Cette fonction permet la création du bilan d'un enfant au format pdf."""
+def student_bilan_pdf_view(request, pk):
+    """ This function allows the creation of a child’s report in pdf format."""
 
     student = Students.objects.get(pk=pk)
     today = date.today()
@@ -133,7 +144,7 @@ def student_pdf_view(request, pk):
                 'form': form
             }
             response = HttpResponse(content_type='application/pdf')
-            filename = "Bilan_{}_{}".format(student, student.ambiance)
+            filename = "{}_{}".format(student, student.ambiance)
             response['Content-Disposition'] = 'attachment; filename=Bilan_%s.pdf' % filename
             template = get_template(template_path)
             html = template.render(context)
@@ -152,3 +163,33 @@ def student_pdf_view(request, pk):
     return render(request, 'students/choice_print.html', context=context)
 
 
+@login_required
+def student_doc_pdf_view(request, pk):
+    """ This function allows the export of a child’s file in pdf format."""
+    student = Students.objects.get(pk=pk)
+    pls = student.pratique_life
+    mss = student.sensorial_material
+    mathes = student.mathe
+    lang = student.langage
+    lt = student.letter
+    template_path = 'students/pdf2.html'
+    context = {
+        'student': student,
+        'pls': pls,
+        'mss': mss,
+        'mts': mathes,
+        'lang': lang,
+        'lt': lt
+    }
+    response = HttpResponse(content_type='application/pdf')
+    filename = "{}_{}".format(student, student.ambiance.year)
+    response['Content-Disposition'] = 'attachment; filename=%s.pdf' % filename
+    template = get_template(template_path)
+    html = template.render(context)
+
+    pisa_status = pisa.CreatePDF(
+        html, dest=response)
+
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response

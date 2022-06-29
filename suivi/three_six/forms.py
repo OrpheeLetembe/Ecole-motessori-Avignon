@@ -1,4 +1,6 @@
 from django import forms
+
+from multiselectfield import MultiSelectFormField
 from .models import PracticalLife, SensoryMaterial, Math, Langage, Letter
 from students.models import Students
 
@@ -276,7 +278,7 @@ class SensoryMaterialForm(forms.ModelForm):
     """EXPERIENCES SCIENTIFIQUES"""
     title_9 = forms.CharField(label="", disabled=True, widget=forms.TextInput(attrs={"class": "form-control"}))
     sink_float = forms.CharField(
-        label="Les objects qui coulent, qui flottent", required=False,
+        label="Les objets qui coulent, qui flottent", required=False,
         widget=forms.TextInput(attrs={"class": "form-control"}))
     horizontal_water = forms.CharField(
         label="l'eau qui s'équilibre sur un plan horizontal", required=False,
@@ -614,88 +616,89 @@ class LangageForm(forms.ModelForm):
 
 class LetterForm(forms.ModelForm):
     CHOICES = (
-        ('Présentée', 'Présentée'),
-        ('Entendue', "Entendue"),
-        ('Lue', 'Lue'),
-        ('Ecrite', 'Ecrite')
+        ('presented', 'Présentée'),
+        ('traced', 'tracée'),
+        ('heard', "Entendue"),
+        ('read', 'Lue'),
+        ('written', 'Ecrite')
 
     )
-    letter_a = forms.ChoiceField(
+    letter_a = forms.MultipleChoiceField(
         label="A", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_b = forms.ChoiceField(
+    letter_b = forms.MultipleChoiceField(
         label="B", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_c = forms.ChoiceField(
+    letter_c = forms.MultipleChoiceField(
         label="C", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_d = forms.ChoiceField(
+    letter_d = forms.MultipleChoiceField(
         label="D", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_e = forms.ChoiceField(
+    letter_e = forms.MultipleChoiceField(
         label="E", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_f = forms.ChoiceField(
+    letter_f = forms.MultipleChoiceField(
         label="F", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_g = forms.ChoiceField(
+    letter_g = forms.MultipleChoiceField(
         label="G", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_h = forms.ChoiceField(
+    letter_h = forms.MultipleChoiceField(
         label="H", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_i = forms.ChoiceField(
+    letter_i = forms.MultipleChoiceField(
         label="I", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_j = forms.ChoiceField(
+    letter_j = forms.MultipleChoiceField(
         label="J", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_k = forms.ChoiceField(
+    letter_k = forms.MultipleChoiceField(
         label="K", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_l = forms.ChoiceField(
+    letter_l = forms.MultipleChoiceField(
         label="L", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_m = forms.ChoiceField(
+    letter_m = forms.MultipleChoiceField(
         label="M", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_n = forms.ChoiceField(
+    letter_n = forms.MultipleChoiceField(
         label="N", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_o = forms.ChoiceField(
+    letter_o = forms.MultipleChoiceField(
         label="O", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_p = forms.ChoiceField(
+    letter_p = forms.MultipleChoiceField(
         label="P", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_q = forms.ChoiceField(
+    letter_q = forms.MultipleChoiceField(
         label="Q", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_r = forms.ChoiceField(
+    letter_r = forms.MultipleChoiceField(
         label="R", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_s = forms.ChoiceField(
+    letter_s = forms.MultipleChoiceField(
         label="S", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_t = forms.ChoiceField(
+    letter_t = forms.MultipleChoiceField(
         label="T", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_u = forms.ChoiceField(
+    letter_u = forms.MultipleChoiceField(
         label="U", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_v = forms.ChoiceField(
+    letter_v = forms.MultipleChoiceField(
         label="V", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_w = forms.ChoiceField(
+    letter_w = forms.MultipleChoiceField(
         label="W", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_x = forms.ChoiceField(
+    letter_x = forms.MultipleChoiceField(
         label="X", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_y = forms.ChoiceField(
+    letter_y = forms.MultipleChoiceField(
         label="Y", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
-    letter_z = forms.ChoiceField(
+    letter_z = forms.MultipleChoiceField(
         label="Z", required=False,
         choices=CHOICES, widget=forms.CheckboxSelectMultiple(attrs={'class': 'inline'}))
 
