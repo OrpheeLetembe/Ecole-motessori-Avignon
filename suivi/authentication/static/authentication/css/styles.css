@@ -6,6 +6,19 @@
 
 }
 
+.navbar li {
+      list-style: none;
+      text-align: left;
+}
+
+.sub-ambiance {
+    display: none;
+}
+
+.menu-ambiance:hover .sub-ambiance {
+	display: inline;
+}
+
 
 
 h1{

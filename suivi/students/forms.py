@@ -1,6 +1,5 @@
 from django import forms
 from .models import Students
-from ambiance.models import Ambiance
 
 
 class StudentForm(forms.ModelForm):
@@ -10,8 +9,6 @@ class StudentForm(forms.ModelForm):
     lastname = forms.CharField(label="Nom", widget=forms.TextInput(attrs={"class": "form-control"}))
     date_of_birth = forms.DateField(
         label="Date de naissance", input_formats=['%d/%m/%Y'])
-    #ambiance = forms.ModelChoiceField(label="Ambiance", queryset=Ambiance.objects.all(), empty_label="-----",
-                                     # widget=forms.Select(attrs={'class': 'form-control'}))
     profil = forms.CharField(
         label="Profil", required=False, widget=forms.Textarea(attrs={"rows": 8, "cols": 81, 'class': 'form-control'}))
 
@@ -26,6 +23,7 @@ class PrintFrom(forms.Form):
         ('observations_2', 'Trimestre 2'),
         ('observations_3', 'Trimestre 3')
     )
+
     pratique_life = forms.ChoiceField(
         label="Vie Pratique", required=False,
         choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'inline'}))

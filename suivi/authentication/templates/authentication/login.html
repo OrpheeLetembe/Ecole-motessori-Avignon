@@ -1,22 +1,16 @@
 {% extends "authentication/base.html" %}
 
-{% block title %} {{ambiance}}-Connection{% endblock %}
+{% block title %}Connection{% endblock %}
 
 {% block content %}
 
 <div class="row forms">
     <div class="col-md-6 d-flex align-items-start flex-column">
-
         <div class="mb-auto p-2">
-            <form  action="{% url 'signup' ambiance_id=ambiance.id %}" method='get' >
-            {% csrf_token %}
-            <input class="btn btn-outline-dark" type='submit' value="S'enregistrer">
-            </form>
+            <a href="{% url 'signup'%}">S'enregistrer</a>
         </div>
-        <div class="align-self-baseline"><a href="javascript:history.back()">Retour</a></div>
     </div>
     <div class="col-md-6 login">
-
         <p>{{ message}}</p>
         <div class="login_form">
             <form method='post'> {% csrf_token %}
@@ -26,6 +20,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock content %}

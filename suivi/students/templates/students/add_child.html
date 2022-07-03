@@ -3,20 +3,20 @@
 {% block title %}Ajouter un enfant{% endblock %}
 
 {% block content %}
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <p>{{ message}}</p>
-                <form method='post' enctype="multipart/form-data">
-                    {% csrf_token %}
-                        {{ form.as_p}}
-                    <button class="btn btn-outline-dark" type='submit' >Ajouter</button>
-                </form>
-            </div>
-            <div class="col-md-2">
-                <a href="{% url 'all_child' ambiance_id=ambiance.id %}">Retour</a>
-            </div>
-
-        </div>
-
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        {% if form.errors %}
+            {{form.errors }}
+        {% endif %}
+        <form method='post' enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p}}
+            <button class="btn btn-outline-dark" type='submit' >Ajouter</button>
+        </form>
+    </div>
+    <div class="col-md-2">
+        <a href="{% url 'all_child' ambiance_id=ambiance.id %}">Retour</a>
+    </div>
+</div>
 {% endblock content %}

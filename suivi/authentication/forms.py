@@ -12,6 +12,42 @@ class LoginForm(forms.Form):
                                widget=forms.PasswordInput(attrs={"class": "form-control"}))
 
 
+class SignUpForm(UserCreationForm):
+    CHOICES = (
+        ('educator', 'Educatrice'),
+        ('assistant', 'Assistante')
+    )
+
+    username = forms.CharField(
+        required=True, label="Nom d'utilisateur",
+        widget=forms.TextInput(attrs={"class": "form-control"}))
+    first_name = forms.CharField(label="Prénom", widget=forms.TextInput(attrs={"class": "form-control"}))
+    last_name = forms.CharField(label="Nom", widget=forms.TextInput(attrs={"class": "form-control"}))
+    role = forms.ChoiceField(
+        label="Rôle", required=False,
+        choices=CHOICES, widget=forms.Select(attrs={"class": "form-control"}))
+    ambiance = forms.ModelChoiceField(
+        label="Ambiance", required=False, queryset=Ambiance.objects.all(), empty_label="-----",
+        widget=forms.Select(attrs={'class': 'form-control'}))
+    password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={"class": "form-control"}))
+    password2 = forms.CharField(label="Confirmation mot de passe", widget=forms.PasswordInput(attrs={"class": "form-control"}))
+
+    class Meta(UserCreationForm.Meta):
+        model = get_user_model()
+
+    def save(self, commit=True):
+
+        user = super().save(commit=False)
+        user.first_name = self.cleaned_data["first_name"]
+        user.last_name = self.cleaned_data["last_name"]
+        user.role = self.cleaned_data["role"]
+        user.ambiance = self.cleaned_data["ambiance"]
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user
+
+"""
 class SignupForm(UserCreationForm):
 
     CHOICES = (
@@ -21,14 +57,14 @@ class SignupForm(UserCreationForm):
 
     username = forms.CharField(required=True, label="Nom d'utilisateur",
                                widget=forms.TextInput(attrs={"class": "form-control"}))
-    firstname = forms.CharField(label="Prénom", widget=forms.TextInput(attrs={"class": "form-control"}))
-    lastname = forms.CharField(label="Nom", widget=forms.TextInput(attrs={"class": "form-control"}))
+    first_name = forms.CharField(label="Prénom", widget=forms.TextInput(attrs={"class": "form-control"}))
+    last_name = forms.CharField(label="Nom", widget=forms.TextInput(attrs={"class": "form-control"}))
     role = forms.ChoiceField(
         label="Rôle", required=False,
         choices=CHOICES, widget=forms.Select(attrs={"class": "form-control"}))
-    # ambiance = forms.ModelChoiceField(
-        # label="Ambiance", required=False, queryset=Ambiance.objects.all(), empty_label="-----",
-        # widget=forms.Select(attrs={'class': 'form-control'}))
+    ambiance = forms.ModelChoiceField(
+        label="Ambiance", required=False, queryset=Ambiance.objects.all(), empty_label="-----",
+        widget=forms.Select(attrs={'class': 'form-control'}))
     password1 = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={"class": "form-control"}))
     password2 = forms.CharField(label="Confirmer mot de passe",
                                 widget=forms.PasswordInput(attrs={"class": "form-control"}))
@@ -36,5 +72,5 @@ class SignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
 
-
+"""
 

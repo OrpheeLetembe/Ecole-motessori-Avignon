@@ -31,8 +31,16 @@
             }
             .table {
                 border-bottom: 1px solid #ddd;
-                text-align: center;
+                text-align: left;
+                margin-top: 50px;
             }
+
+            .table td {
+
+             height: 50pt;
+             padding-left: 1pt;
+
+           }
             .details {
                 padding: 10px 20px 0px 20px;
                 text-align: left !important;
@@ -58,7 +66,9 @@
         <div class="row">
             <div class=detail">
                 <img src="{{student.photo.path}}" alt="Photo" class="img-fluid" width="100" >
-                <p>{{student.firstname}} {{student.lastname}} <br> Date de naissance: {{student.date_of_birth}}</p>
+                <p>{{student.firstname}} {{student.lastname}} <br> Date de naissance: {{student.date_of_birth}} <br>
+                Educatrice : {{user.first_name}} {{user.last_name}}</p>
+
                 <p>{{student.profil}}</p>
             </div>
             <div>
@@ -74,6 +84,24 @@
                 <p><b>Langage</b> <br>{{lang}} </p>
             </div>
         </div>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Signatures de.s éducatrices.eurs</td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>Signature de la direction</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
 

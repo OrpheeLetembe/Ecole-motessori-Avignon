@@ -21,6 +21,7 @@ class Students(models.Model):
     mathe = models.ForeignKey(Math, on_delete=models.CASCADE)
     langage = models.ForeignKey(Langage, on_delete=models.CASCADE)
     letter = models.ForeignKey(Letter, on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
 
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
@@ -37,6 +38,10 @@ class Students(models.Model):
         image = Image.open(self.photo)
         image.thumbnail(self.IMAGE_MAX_SIZE)
         image.save(self.photo.path)
+
+    def deactivate(self):
+        self.active = False
+        self.save()
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

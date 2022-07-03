@@ -11,7 +11,7 @@ urlpatterns = [
     path("print_choice/<pk>", views.student_bilan_pdf_view, name='print_choice'),
     path("print/<pk>", views.student_doc_pdf_view, name='print'),
 
-    path("ambiance/add_child/<int:ambiance_id>", views.student_all, name='ambiance_add_child'),
+    path("ambiance/add_child/<int:ambiance_id>", views.student_active, name='ambiance_add_child'),
 
 ]
 

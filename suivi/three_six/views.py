@@ -4,20 +4,6 @@ from django.contrib.auth.decorators import login_required
 from students.models import Students
 
 from . import forms
-from .models import PracticalLife, SensoryMaterial, Math, Langage, Letter
-
-
-@login_required
-def prat_life_view(request, student_id):
-    student = Students.objects.get(id=student_id)
-    pratique_life = PracticalLife.objects.get(student=student)
-    context = {
-        'student': student,
-        'pls': pratique_life
-
-    }
-
-    return render(request, 'three_six/praticlife.html', context)
 
 
 @login_required
@@ -41,20 +27,6 @@ def update_prat_life(request, student_id):
 
 
 @login_required
-def sensorial_view(request, student_id):
-    student = Students.objects.get(id=student_id)
-    sensoryal_mat = SensoryMaterial.objects.get(student=student)
-
-    context = {
-        'student': student,
-        'mss': sensoryal_mat,
-
-    }
-
-    return render(request, 'three_six/sensorial.html', context)
-
-
-@login_required
 def update_mat_sen(request, student_id):
 
     student = Students.objects.get(id=student_id)
@@ -75,20 +47,6 @@ def update_mat_sen(request, student_id):
 
 
 @login_required
-def math_view(request, student_id):
-    student = Students.objects.get(id=student_id)
-    mathematique = Math.objects.get(student=student)
-
-    context = {
-        'student': student,
-        'mts': mathematique,
-
-    }
-
-    return render(request, 'three_six/math.html', context)
-
-
-@login_required
 def update_math(request, student_id):
 
     student = Students.objects.get(id=student_id)
@@ -106,22 +64,6 @@ def update_math(request, student_id):
         'student': student
     }
     return render(request, 'three_six/update_MATH.html', context)
-
-
-@login_required
-def langage_view(request, student_id):
-    student = Students.objects.get(id=student_id)
-    langage = Langage.objects.get(student=student)
-    letter = Letter.objects.get(student=student)
-
-    context = {
-        'student': student,
-        'lang': langage,
-        'let': letter
-
-    }
-
-    return render(request, 'three_six/langage.html', context)
 
 
 @login_required
@@ -148,9 +90,3 @@ def update_langage(request, student_id):
         'student': student
     }
     return render(request, 'three_six/update_langage.html', context)
-
-
-
-
-
-

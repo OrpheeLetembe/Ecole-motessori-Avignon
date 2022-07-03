@@ -51,6 +51,7 @@ def add_student(request, ambiance_id):
 @login_required
 def students_ambiance_list(request, ambiance_id):
     """ This function is used to obtain the list of children in the same environment as the connected user"""
+
     ambiance = Ambiance.objects.get(id=ambiance_id)
     students = Students.objects.filter(ambiance=ambiance).order_by('lastname')
 
@@ -59,18 +60,19 @@ def students_ambiance_list(request, ambiance_id):
         'students': students,
         'user': request.user,
     }
-    return render(request, 'students/all.html', context=context)
+    return render(request, 'students/ambiance_child_all.html', context=context)
 
 
 @login_required
-def student_all(request, ambiance_id):
-    students = Students.objects.all()
+def student_active(request, ambiance_id):
+
+    students = Students.objects.filter(active=True)
     ambiance = Ambiance.objects.get(id=ambiance_id)
     context = {
         'students': students,
         'ambiance': ambiance
     }
-    return render(request, 'students/student.html', context=context)
+    return render(request, 'students/child_all.html', context=context)
 
 
 @login_required
@@ -118,7 +120,7 @@ def trim_choice(data, activity):
 @login_required
 def student_bilan_pdf_view(request, pk):
     """ This function allows the creation of a child’s report in pdf format."""
-
+    user = request.user
     student = Students.objects.get(pk=pk)
     today = date.today()
     form = forms.PrintFrom()
@@ -135,6 +137,7 @@ def student_bilan_pdf_view(request, pk):
             lang = trim_choice(trim_langage, student.langage)
             template_path = 'students/pdf1.html'
             context = {
+                'user': user,
                 'student': student,
                 'today': today,
                 'pls': pls,
@@ -166,6 +169,7 @@ def student_bilan_pdf_view(request, pk):
 @login_required
 def student_doc_pdf_view(request, pk):
     """ This function allows the export of a child’s file in pdf format."""
+
     student = Students.objects.get(pk=pk)
     pls = student.pratique_life
     mss = student.sensorial_material

@@ -5,7 +5,7 @@ from .models import Students
 
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'firstname', 'lastname')
+    list_display = ('id', 'firstname', 'lastname', 'ambiance')
 
 
 admin.site.register(Students, StudentAdmin)

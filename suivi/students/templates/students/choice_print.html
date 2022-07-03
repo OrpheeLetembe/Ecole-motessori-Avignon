@@ -1,23 +1,21 @@
 {% extends "authentication/base.html" %}
-{% block title %}Impression-{student}}{% endblock %}
+{% block title %}Bilan-{{student}}{% endblock %}
 {% block content %}
 <div class="row" xmlns="http://www.w3.org/1999/html">
-            <div class="col-md-2">{{student}}</div>
-            <div class="col-md-8">
-                <p>{{ message}}</p>
-                <form method='post' >
-                    {% csrf_token %}
-                    <table class="table table-bordered">
-                        {{ form.as_table}}
-                    </table>
-
-                    <button class="btn btn-outline-dark" type='submit' >Imprimer</button>
-                </form>
-            </div>
-            <div class="col-md-2">
-                <a href="{% url 'Vie_Pratique_change' student_id=student.id %}">Retour</a>
-            </div>
-
-        </div>
+    <div class="col-md-2">{{student}}</div>
+    <div class="col-md-8">
+        <p>{{ message}}</p>
+        <form method='post' >
+            {% csrf_token %}
+            <table class="table table-bordered">
+                {{ form.as_table}}
+            </table>
+            <button class="btn btn-outline-dark" type='submit' >Imprimer</button>
+        </form>
+    </div>
+    <div class="col-md-2">
+        <a href="{% url 'Vie_Pratique_change' student_id=student.id %}">Retour</a>
+    </div>
+</div>
 
 {% endblock content %}
