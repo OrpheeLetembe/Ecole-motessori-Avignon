@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve().parent.parent
@@ -138,3 +140,15 @@ LOGIN_URL = 'login'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
+
+# sentry configuration
+sentry_sdk.init(
+    dsn=os.environ['SENTRY_DSN'],
+    integrations=[
+        DjangoIntegration(),
+    ],
+
+    traces_sample_rate=1.0,
+
+    send_default_pii=True
+)
