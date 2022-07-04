@@ -146,10 +146,14 @@ class SensoryMaterial(models.Model):
     """GEOGRAPHIE"""
 
     title_7 = models.CharField(max_length=100, default='GEOGRAPHIE')
-    smooth_rough_globe = models.CharField(max_length=250, verbose_name="Le globe lisse et rugueux")
-    colorful_globe = models.CharField(max_length=250, verbose_name="Le globe coloré")
-    planisphere = models.CharField(max_length=250, verbose_name="Le planisphère")
-    puzzles_continents = models.CharField(max_length=250, verbose_name="Les puzzles des continents")
+    smooth_rough_globe = models.CharField(
+        max_length=250, verbose_name="Le globe lisse et rugueux")
+    colorful_globe = models.CharField(
+        max_length=250, verbose_name="Le globe coloré")
+    planisphere = models.CharField(
+        max_length=250, verbose_name="Le planisphère")
+    puzzles_continents = models.CharField(
+        max_length=250, verbose_name="Les puzzles des continents")
     flags = models.CharField(max_length=250, verbose_name="Les drapeaux")
     flags_1 = models.CharField(max_length=250, verbose_name="Les drapeaux : nomenclature classifiée")
     land_water = models.CharField(max_length=250, verbose_name="Les contrastes de la terre et de l'eau")
