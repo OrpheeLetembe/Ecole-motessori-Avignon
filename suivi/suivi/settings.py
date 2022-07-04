@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-2%fbb&ua-xqoujh^i81_ri51dsgb8!^u+!xsjaacxgu-e(ryl)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['suivi-apprentissages.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -139,16 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR.join_path('media/')
+MEDIA_ROOT = 'media/'
 
-# sentry configuration
-sentry_sdk.init(
-    dsn=os.environ['SENTRY_DSN'],
-    integrations=[
-        DjangoIntegration(),
-    ],
-
-    traces_sample_rate=1.0,
-
-    send_default_pii=True
-)
