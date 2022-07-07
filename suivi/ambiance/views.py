@@ -32,7 +32,7 @@ def ambiance_list(request):
 
     user = request.user
     ambiances = Ambiance.objects.filter(name=user.ambiance.name).order_by('-date_created')
-    return render(request, 'ambiance/ambiance_all.html', context={'ambiances': ambiances})
+    return render(request, 'ambiance/ambiance_all.html', {'ambiances': ambiances})
 
 
 @login_required

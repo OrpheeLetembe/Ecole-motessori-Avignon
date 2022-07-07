@@ -1,34 +1,31 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
-from django.urls import reverse_lazy
-from django.views.generic import CreateView
+
 
 from .forms import SignUpForm, LoginForm
 
 
-class SignUpView(CreateView):
-    """
-    User registration
+def signup_page_view(request):
+    """This function allows the registration of a new user.
+       After entering his credentials, the user is redirected to the ambiances page.
+       """
+    form = SignUpForm()
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('ambiance')
+        else:
+            form = SignUpForm()
 
-    Form parameters:
-        first_name (string): first name of an user
-        last_name (string): last name of an user
-        username (string): username of an user
-        role (string): role of an user
-        ambiance (object): ambiance of user
-        password1 (password): new password of an user
-        password2 (password): confirm new password of an user
-
-    """
-    form_class = SignUpForm
-    success_url = reverse_lazy('login')
-    template_name = 'authentication/signup.html'
+    return render(request, "authentication/signup.html", {"form": form})
 
 
-def login_page(request):
+def login_page_view(request):
     """"
     his function allows a registered user to log in.
-    After verifying his credentials, the user is redirected to the feed page if they are correct.
+    After verifying his credentials, the user is redirected to the ambiances page if they are correct.
 
     """
     form = LoginForm()
@@ -53,7 +50,7 @@ def login_page(request):
     return render(request, "authentication/login.html", context=context)
 
 
-def logout_page(request):
+def logout_page_view(request):
     """
     Function allowing the disconnection of a user.
     After disconnection, the user is redirected to the login page

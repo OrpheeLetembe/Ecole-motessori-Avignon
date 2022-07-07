@@ -1,5 +1,5 @@
 from django.urls import reverse, resolve
-from authentication.views import SignUpView, login_page, logout_page
+from authentication.views import signup_page_view, login_page_view, logout_page_view
 
 
 def test_signup_url():
@@ -8,7 +8,7 @@ def test_signup_url():
     """
     url = reverse("signup")
     assert resolve(url).view_name == 'signup'
-    assert resolve(url).func.view_class == SignUpView
+    assert resolve(url).func == signup_page_view
 
 
 def test_login_url():
@@ -17,7 +17,7 @@ def test_login_url():
     """
     url = reverse("login")
     assert resolve(url).view_name == 'login'
-    assert resolve(url).func == login_page
+    assert resolve(url).func == login_page_view
 
 
 def test_logout_url():
@@ -26,5 +26,5 @@ def test_logout_url():
     """
     url = reverse("logout")
     assert resolve(url).view_name == 'logout'
-    assert resolve(url).func == logout_page
+    assert resolve(url).func == logout_page_view
 
