@@ -9,5 +9,3 @@ admin.site.register(SensoryMaterial)
 admin.site.register(Math)
 admin.site.register(Langage)
 admin.site.register(Letter)
-
-

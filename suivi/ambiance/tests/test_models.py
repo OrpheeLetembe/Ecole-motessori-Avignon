@@ -16,4 +16,3 @@ def test_user_str():
     )
 
     assert str(ambiance) == f'{ambiance.name}-{ambiance.year}'
-

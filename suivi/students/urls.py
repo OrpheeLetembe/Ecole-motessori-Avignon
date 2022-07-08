@@ -14,5 +14,3 @@ urlpatterns = [
     path("ambiance/add_child/<int:ambiance_id>", views.student_active, name='ambiance_add_child'),
 
 ]
-
-

@@ -37,4 +37,3 @@ def test_ambiance_form__save_method():
     ambiance = form.save()
 
     assert isinstance(ambiance, Ambiance)
-

@@ -49,4 +49,3 @@ class Students(models.Model):
 
     def __str__(self):
         return f'{self.firstname} {self.lastname}'
-

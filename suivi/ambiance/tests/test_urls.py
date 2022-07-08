@@ -18,4 +18,3 @@ def test_ambiance_list_url():
     url = reverse("ambiance")
     assert resolve(url).view_name == 'ambiance'
     assert resolve(url).func == ambiance_list_view
-

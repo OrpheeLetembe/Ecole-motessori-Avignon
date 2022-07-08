@@ -25,7 +25,8 @@ def signup_page_view(request):
 def login_page_view(request):
     """"
     his function allows a registered user to log in.
-    After verifying his credentials, the user is redirected to the ambiances page if they are correct.
+    After verifying his credentials,
+    the user is redirected to the ambiances page if they are correct.
 
     """
     form = LoginForm()
@@ -44,7 +45,7 @@ def login_page_view(request):
                 message = "Identifiants invalides."
     context = {
         'form': form,
-         'message': message,
+        'message': message,
 
     }
     return render(request, "authentication/login.html", context=context)
@@ -57,5 +58,3 @@ def logout_page_view(request):
     """
     logout(request)
     return redirect('login')
-
-

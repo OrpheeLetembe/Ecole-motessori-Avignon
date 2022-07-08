@@ -50,7 +50,8 @@ def add_student(request, ambiance_id):
 
 @login_required
 def students_ambiance_list(request, ambiance_id):
-    """ This function is used to obtain the list of children in the same environment as the connected user"""
+    """ This function is used to obtain the list of children
+    in the same environment as the connected user"""
 
     ambiance = Ambiance.objects.get(id=ambiance_id)
     students = Students.objects.filter(ambiance=ambiance).order_by('lastname')

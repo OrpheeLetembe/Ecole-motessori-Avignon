@@ -27,4 +27,3 @@ def test_logout_url():
     url = reverse("logout")
     assert resolve(url).view_name == 'logout'
     assert resolve(url).func == logout_page_view
-
