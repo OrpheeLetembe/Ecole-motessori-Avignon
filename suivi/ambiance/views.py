@@ -7,7 +7,7 @@ from students.models import Students
 
 
 @login_required
-def add_ambiance(request):
+def add_ambiance_view(request):
     """This function allows the connected user to add a new school year to his atmosphere"""
 
     ambiance_name = request.user.ambiance.name
@@ -27,7 +27,7 @@ def add_ambiance(request):
 
 
 @login_required
-def ambiance_list(request):
+def ambiance_list_view(request):
     """" This function allows you to get the list of atmospheres, the most recent ones first."""
 
     user = request.user
